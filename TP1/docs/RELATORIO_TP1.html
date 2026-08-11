@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatorio_TP1_Manoel_Egidio</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #334155;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f1f5f9;
+        }
+
+        .paper {
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-print-bar {
+            position: sticky;
+            top: 10px;
+            background: #1e293b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+
+        .btn-print {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-print:hover {
+            background: #1d4ed8;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary);
+            margin-top: 1.5em;
+        }
+
+        h1 {
+            font-size: 24px;
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 18px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        .meta-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+
+        .meta-table td {
+            padding: 8px;
+            border: 1px solid var(--border);
+        }
+
+        .meta-table td.label {
+            font-weight: bold;
+            background: var(--light);
+            width: 30%;
+        }
+
+        pre, code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        pre {
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        code {
+            padding: 2px 5px;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+
+        @media print {
+            .no-print-bar {
+                display: none !important;
+            }
+            body {
+                background: white;
+                padding: 0;
+            }
+            .paper {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print-bar">
+        <span>📄 <strong>Relatório TP1 - Engenharia de Softwares Escaláveis</strong></span>
+        <button class="btn-print" onclick="window.print()">🖨️ Salvar como PDF</button>
+    </div>
+
+    <div class="paper">
+        <h1>Relatório Técnico e Arquitetural - TP1</h1>
+        <p><em>Primeira Entrega: Construção de um Monólito Simples com Spring Boot e React</em></p>
+
+        <table class="meta-table">
+            <tr>
+                <td class="label">Aluno</td>
+                <td>Manoel Egídio</td>
+            </tr>
+            <tr>
+                <td class="label">Disciplina</td>
+                <td>Engenharia de Softwares Escaláveis (PB)</td>
+            </tr>
+            <tr>
+                <td class="label">Repositório Git</td>
+                <td><a href="https://github.com/ManoelEgidio/infnet-pb">https://github.com/ManoelEgidio/infnet-pb</a></td>
+            </tr>
+            <tr>
+                <td class="label">Caminho da Entrega</td>
+                <td>/TP1</td>
+            </tr>
+        </table>
+
+        <h2>1. Visão Geral da Solução</h2>
+        <p>A solução desenvolvida para o TP1 consiste em uma aplicação monolítica de gestão de tarefas (Task Management System). O sistema serve de base para futuras evoluções em direção a uma arquitetura de microsserviços nos próximos Trabalhos Práticos.</p>
+
+        <h2>2. Estrutura em Camadas (Layered Architecture)</h2>
+        <p>O back-end foi estruturado em quatro camadas principais:</p>
+        <ul>
+            <li><strong>Controller Layer:</strong> <code>TaskController</code> gerencia requisições HTTP REST e retornos serializados em JSON.</li>
+            <li><strong>Service Layer:</strong> <code>TaskServiceImpl</code> orquestra as regras de negócio e validações do sistema.</li>
+            <li><strong>Domain Layer:</strong> Entidade JPA <code>Task</code>, Value Object <code>TaskTitle</code> e Enums <code>Priority</code> / <code>TaskStatus</code>.</li>
+            <li><strong>Repository Layer:</strong> <code>TaskRepository</code> estende <code>JpaRepository</code> para persistência no H2 In-Memory Database.</li>
+        </ul>
+
+        <h2>3. Autoconfiguração e SOLID</h2>
+        <p>A autoconfiguração do Spring Boot foi utilizada via <code>spring-boot-starter-web</code> e <code>spring-boot-starter-data-jpa</code>. Todos os princípios SOLID foram respeitados:</p>
+        <ul>
+            <li><strong>SRP:</strong> Separação estrita de responsabilidades por pacote (controller, service, repository, dto).</li>
+            <li><strong>OCP:</strong> Extensibilidade via <code>GlobalExceptionHandler</code>.</li>
+            <li><strong>LSP & DIP:</strong> Uso de interfaces para o serviço (<code>TaskService</code>) desacoplando instâncias concretas.</li>
+            <li><strong>ISP:</strong> DTOs dedicados para request, response e métricas do dashboard.</li>
+        </ul>
+
+        <h2>4. Front-End em React</h2>
+        <p>A interface do usuário foi construída com React e Vite, consumindo a API REST assincronamente através de um cliente HTTP em JavaScript. A interface fornece um painel com métricas em tempo real, criação e edição de tarefas, filtros por status/prioridade e notificações visuais.</p>
+
+        <h2>5. Instruções de Execução</h2>
+        <pre>
+# 1. Back-End Spring Boot (Porta 8080)
+cd TP1/backend
+.\gradlew.bat bootRun
+
+# 2. Front-End React (Porta 5173)
+cd TP1/frontend
+npm install
+npm run dev
+        </pre>
+    </div>
+
+</body>
+</html>
