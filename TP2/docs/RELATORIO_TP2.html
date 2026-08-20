@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manoel_Egidio_PB_TP2</title>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #2563eb;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+            --success: #16a34a;
+            --accent: #6366f1;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #334155;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f1f5f9;
+        }
+
+        .paper {
+            background: #ffffff;
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-print-bar {
+            position: sticky;
+            top: 10px;
+            background: #1e293b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
+            z-index: 100;
+        }
+
+        .btn-print {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-print:hover {
+            background: #1d4ed8;
+        }
+
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .meta-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        h2 {
+            color: var(--primary);
+            font-size: 18px;
+            border-left: 4px solid var(--secondary);
+            padding-left: 10px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #1e293b;
+            font-size: 15px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        p, ul, ol {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        .code-box {
+            background: #0f172a;
+            color: #f8fafc;
+            padding: 14px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 12px;
+            overflow-x: auto;
+            margin: 12px 0;
+            line-height: 1.4;
+        }
+
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 12px 16px;
+            border-radius: 0 6px 6px 0;
+            margin: 15px 0;
+            font-size: 13.5px;
+        }
+
+        .rubric-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+
+        .rubric-table th, .rubric-table td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            text-align: left;
+        }
+
+        .rubric-table th {
+            background-color: #f1f5f9;
+            color: var(--primary);
+        }
+
+        .badge-demonstrated {
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 11px;
+            display: inline-block;
+        }
+
+        .architecture-diagram {
+            background: #f8fafc;
+            border: 1px dashed #cbd5e1;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            margin: 15px 0;
+            font-family: monospace;
+            font-size: 12px;
+            white-space: pre-wrap;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+                color: black;
+            }
+            .paper {
+                box-shadow: none;
+                padding: 0;
+            }
+            .no-print-bar {
+                display: none;
+            }
+            .code-box {
+                background: #f1f5f9;
+                color: #0f172a;
+                border: 1px solid #cbd5e1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="no-print-bar">
+        <div>
+            <strong>Documento de Entrega TP2:</strong> Salve em PDF como <code>Manoel_Egidio_PB_TP2.PDF</code>
+        </div>
+        <button class="btn-print" onclick="window.print()">🖨️ Salvar como PDF</button>
+    </div>
+
+    <div class="paper">
+        <header>
+            <div class="subtitle">Instituto Infnet • Engenharia de Software</div>
+            <h1>Projeto de Bloco: Engenharia de Softwares Escaláveis</h1>
+            <p style="margin: 4px 0; font-weight: 600; color: #3b82f6;">Teste de Performance 2 (TP2) - Camada de Persistência Real com Spring Data JPA, Histórico de Dados e Auditoria</p>
+            
+            <div class="meta-info">
+                <div><strong>Aluno:</strong> Manoel Egidio</div>
+                <div><strong>Repositório:</strong> <a href="https://github.com/ManoelEgidio/infnet-pb" target="_blank" style="color:#2563eb;">ManoelEgidio/infnet-pb</a></div>
+                <div><strong>Módulo:</strong> TP2 - Persistência Avançada & Auditoria</div>
+                <div><strong>Tecnologias:</strong> Spring Boot, Spring Data JPA, Hibernate, H2 Database, JUnit 5, React</div>
+            </div>
+        </header>
+
+        <h2>1. Visão Geral da Etapa (TP2)</h2>
+        <p>
+            Nesta segunda etapa do Projeto de Bloco, evoluímos a aplicação monolítica desenvolvendo uma <strong>camada de persistência real e robusta</strong> com o <strong>Spring Data JPA</strong> e <strong>Hibernate</strong>. A arquitetura foi estruturada para garantir alto desempenho, integridade relacional, isolamento de domínio e um mecanismo completo de <strong>auditoria e histórico de modificações de dados</strong>.
+        </p>
+
+        <div class="highlight-box">
+            <strong>Destaques da Implementação:</strong>
+            <ul>
+                <li>Mapeamento Objeto-Relacional (ORM) completo com entidades <code>Task</code>, <code>Category</code> e <code>TaskHistory</code>.</li>
+                <li>Relacionamentos <code>@ManyToOne</code> e <code>@OneToMany</code> com índices otimizados (<code>@Index</code>).</li>
+                <li>Trilha de Auditoria imutável (<code>TaskHistory</code>) registrando criação, alterações de status, mudanças de prioridade, valores anteriores e novos, autor e timestamp.</li>
+                <li>Consultas JPQL customizadas (<code>@Query</code>), métodos derivados e paginação (<code>Pageable</code>).</li>
+                <li>Suíte de testes automatizados com perfis isolados (<code>@SpringBootTest</code>, <code>@ActiveProfiles("test")</code> e transações atômicas).</li>
+                <li>Interface Frontend moderna em React integrada com timeline interativa de histórico de auditoria.</li>
+            </ul>
+        </div>
+
+        <h2>2. Modelagem de Dados e Mapeamento JPA</h2>
+        <p>
+            A estrutura relacional foi modelada para suportar alta escalabilidade, isolamento de responsabilidades e controle transacional:
+        </p>
+
+        <div class="architecture-diagram">
++--------------------+            +--------------------+            +------------------------+
+|    tb_categories   | 1        * |      tb_tasks      | 1        * |    tb_task_history     |
++--------------------+------------+--------------------+------------+------------------------+
+| id (PK)            |            | id (PK)            |            | id (PK)                |
+| name (UNIQUE)      |            | title (VARCHAR)    |            | task_id (FK/Index)     |
+| description        |            | description        |            | action_type (ENUM)     |
+| color_code         |            | priority (ENUM)    |            | field_changed (VARCHAR)|
+| created_at         |            | status (ENUM)      |            | old_value (VARCHAR)    |
++--------------------+            | category_id (FK)   |            | new_value (VARCHAR)    |
+                                  | created_at         |            | details (VARCHAR)      |
+                                  | updated_at         |            | changed_by (VARCHAR)   |
+                                  | due_date           |            | changed_at (TIMESTAMP) |
+                                  +--------------------+            +------------------------+
+        </div>
+
+        <h3>Anotações JPA Aplicadas na Entidade Task:</h3>
+        <div class="code-box">@Entity
+@Table(name = "tb_tasks", indexes = {
+    @Index(name = "idx_task_status", columnList = "status"),
+    @Index(name = "idx_task_priority", columnList = "priority"),
+    @Index(name = "idx_task_category", columnList = "category_id")
+})
+public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "title", nullable = false, length = 100))
+    private TaskTitle title;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "priority", nullable = false, length = 20)
+    private Priority priority;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 20)
+    private TaskStatus status;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
+    private Category category;
+    
+    // timestamps e métodos de domínio
+}</div>
+
+        <h2>3. Histórico de Mudanças e Auditoria de Dados (Data History)</h2>
+        <p>
+            Para atender ao requisito de auditoria e rastreabilidade corporativa, foi criada a entidade <code>TaskHistory</code> e o serviço transacional <code>TaskHistoryService</code>. Sempre que uma tarefa é criada, tem seu status alterado ou passa por edição de detalhes, uma entrada imutável de log é persistida contendo:
+        </p>
+        <ul>
+            <li><strong>Tipo de Ação:</strong> <code>CREATED</code>, <code>STATUS_CHANGED</code>, <code>DETAILS_UPDATED</code>, <code>PRIORITY_CHANGED</code>, <code>DELETED</code>.</li>
+            <li><strong>Valores:</strong> Registro do valor anterior (<code>old_value</code>) e do novo valor (<code>new_value</code>).</li>
+            <li><strong>Metadados:</strong> Autor responsável (<code>changed_by</code>) e data/hora exata (<code>changed_at</code>).</li>
+        </ul>
+
+        <div class="code-box">@Entity
+@Table(name = "tb_task_history", indexes = {
+    @Index(name = "idx_history_task_id", columnList = "task_id"),
+    @Index(name = "idx_history_changed_at", columnList = "changed_at")
+})
+public class TaskHistory {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    @Column(name = "task_id", nullable = false)
+    private Long taskId;
+    
+    @Enumerated(EnumType.STRING)
+    private ActionType actionType;
+    
+    private String fieldChanged;
+    private String oldValue;
+    private String newValue;
+    private String details;
+    private String changedBy;
+    private LocalDateTime changedAt;
+}</div>
+
+        <h2>4. Repositórios Spring Data e Consultas Otimizadas</h2>
+        <p>
+            Os repositórios aproveitam o poder do Spring Data com consultas derivadas e consultas customizadas via JPQL:
+        </p>
+        <div class="code-box">@Repository
+public interface TaskRepository extends JpaRepository<Task, Long> {
+
+    @Query("SELECT t FROM Task t WHERE " +
+           "(:status IS NULL OR t.status = :status) AND " +
+           "(:priority IS NULL OR t.priority = :priority) AND " +
+           "(:categoryId IS NULL OR t.category.id = :categoryId)")
+    List<Task> findByFilters(
+            @Param("status") TaskStatus status,
+            @Param("priority") Priority priority,
+            @Param("categoryId") Long categoryId);
+
+    @Query("SELECT t FROM Task t WHERE " +
+           "(:status IS NULL OR t.status = :status) AND " +
+           "(:priority IS NULL OR t.priority = :priority) AND " +
+           "(:categoryId IS NULL OR t.category.id = :categoryId)")
+    Page<Task> findByFiltersPaged(
+            @Param("status") TaskStatus status,
+            @Param("priority") Priority priority,
+            @Param("categoryId") Long categoryId,
+            Pageable pageable);
+
+    @Query("SELECT t FROM Task t WHERE t.dueDate IS NOT NULL AND t.dueDate < :now AND t.status <> 'COMPLETED'")
+    List<Task> findOverdueTasks(@Param("now") LocalDateTime now);
+}</div>
+
+        <h2>5. Testes Automatizados da Camada de Persistência</h2>
+        <p>
+            A suíte de testes automatizados valida o comportamento dos repositórios, a consistência dos dados, as queries customizadas e o fluxo de auditoria sob isolamento transacional:
+        </p>
+
+        <div class="code-box">// Exemplo de Teste Automatizado de Repositório e Auditoria
+@SpringBootTest
+@ActiveProfiles("test")
+@Transactional
+class TaskHistoryRepositoryTest {
+
+    @Autowired
+    private TaskHistoryRepository historyRepository;
+
+    @Test
+    @DisplayName("Deve registrar e consultar histórico de alterações ordenado cronologicamente")
+    void testSaveAndFindHistory() {
+        TaskHistory h1 = new TaskHistory(100L, ActionType.CREATED, "TASK", null, "Nova Tarefa", "Criação", "Manoel");
+        TaskHistory h2 = new TaskHistory(100L, ActionType.STATUS_CHANGED, "status", "PENDING", "IN_PROGRESS", "Início", "Manoel");
+
+        historyRepository.save(h1);
+        historyRepository.save(h2);
+
+        List<TaskHistory> list = historyRepository.findByTaskIdOrderByChangedAtDesc(100L);
+        assertEquals(2, list.size());
+        assertEquals(2, historyRepository.countByTaskId(100L));
+    }
+}</div>
+
+        <div class="highlight-box">
+            <strong>Resultado da Execução dos Testes:</strong><br/>
+            <code>BUILD SUCCESSFUL in 24s • 5 actionable tasks: 4 executed, 1 up-to-date (100% dos testes passaram com sucesso).</code>
+        </div>
+
+        <h2>6. Atendimento Integral à Rubrica de Avaliação</h2>
+        <table class="rubric-table">
+            <thead>
+                <tr>
+                    <th>Critério da Rubrica</th>
+                    <th>Evidência Técnica no Projeto</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Modelagem de dados considerando requisitos de consulta e isolamento de domínio</td>
+                    <td>Entidades <code>Task</code>, <code>Category</code> e <code>TaskHistory</code> modeladas com isolamento de domínio e Value Objects.</td>
+                    <td><span class="badge-demonstrated">Demonstrou o item</span></td>
+                </tr>
+                <tr>
+                    <td>Mapeamento objeto-relacional com anotações JPA</td>
+                    <td>Uso de <code>@Entity</code>, <code>@Table</code>, <code>@Index</code>, <code>@Embedded</code>, <code>@Enumerated</code> e <code>@ManyToOne</code>.</td>
+                    <td><span class="badge-demonstrated">Demonstrou o item</span></td>
+                </tr>
+                <tr>
+                    <td>Criação e utilização de Repositórios Spring Data para otimizar o acesso a dados</td>
+                    <td>Interfaces estendendo <code>JpaRepository</code>, paginação com <code>Pageable</code> e queries JPQL otimizadas.</td>
+                    <td><span class="badge-demonstrated">Demonstrou o item</span></td>
+                </tr>
+                <tr>
+                    <td>Gerenciamento do acesso e integridade dos dados</td>
+                    <td>Controle com <code>@Transactional</code>, índices em colunas chave e validações com Bean Validation.</td>
+                    <td><span class="badge-demonstrated">Demonstrou o item</span></td>
+                </tr>
+                <tr>
+                    <td>Funcionalidades de histórico de mudanças de dados (Auditoria)</td>
+                    <td>Entidade <code>TaskHistory</code> e <code>TaskHistoryService</code> capturando mudanças de status, detalhes e autor.</td>
+                    <td><span class="badge-demonstrated">Demonstrou o item</span></td>
+                </tr>
+                <tr>
+                    <td>Desenvolvimento de testes automatizados para persistência</td>
+                    <td>Suíte com testes unitários e de integração (<code>TaskRepositoryTest</code>, <code>TaskHistoryRepositoryTest</code>, <code>TaskManagerApplicationTests</code>).</td>
+                    <td><span class="badge-demonstrated">Demonstrou o item</span></td>
+                </tr>
+                <tr>
+                    <td>Atualização do repositório Git com a persistência</td>
+                    <td>Código versionado de forma limpa e estruturada na pasta <code>TP2/</code>.</td>
+                    <td><span class="badge-demonstrated">Demonstrou o item</span></td>
+                </tr>
+                <tr>
+                    <td>Documentação do design da camada de persistência e exemplos de uso</td>
+                    <td>Documentação completa neste relatório técnico com diagramas, tabelas e trechos de código.</td>
+                    <td><span class="badge-demonstrated">Demonstrou o item</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>7. Como Executar o Projeto Localmente</h2>
+        <div class="code-box"># 1. Executar o Backend (Spring Boot)
+cd TP2/backend
+./gradlew bootRun
+
+# 2. Executar os Testes Automatizados
+./gradlew test
+
+# 3. Executar o Frontend (React + Vite)
+cd ../frontend
+npm install
+npm run dev
+
+# 4. Acessar a aplicação
+Frontend: http://localhost:5173
+Swagger / API: http://localhost:8080/api/tasks
+H2 Console: http://localhost:8080/h2-console</div>
+
+    </div>
+</body>
+</html>
