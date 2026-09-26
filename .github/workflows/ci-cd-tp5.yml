@@ -1,0 +1,176 @@
+name: CI/CD Pipeline - TP5 Produção
+
+on:
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'TP5/**'
+      - '.github/workflows/ci-cd-tp5.yml'
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'TP5/**'
+
+jobs:
+  # =============================================================
+  # ETAPA 1: Testes Automatizados e Build dos Microsserviços Java
+  # =============================================================
+  backend-ci:
+    name: Backend CI (${{ matrix.service }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        service: [task-service, notification-service]
+
+    steps:
+      - name: Checkout do Código Fonte
+        uses: actions/checkout@v4
+
+      - name: Configurar JDK 21 (Eclipse Temurin)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+          cache: 'gradle'
+
+      - name: Conceder Permissão de Execução ao Gradle Wrapper
+        run: chmod +x TP5/${{ matrix.service }}/gradlew
+
+      - name: Executar Testes Unitários e de Integração
+        run: |
+          cd TP5/${{ matrix.service }}
+          ./gradlew test --info
+
+      - name: Compilar Pacote de Produção (BootJar)
+        run: |
+          cd TP5/${{ matrix.service }}
+          ./gradlew bootJar -x test
+
+      - name: Publicar Relatório de Testes
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results-${{ matrix.service }}
+          path: TP5/${{ matrix.service }}/build/reports/tests/test/
+
+  # =============================================================
+  # ETAPA 2: Validação, Lint e Build do Frontend React SPA
+  # =============================================================
+  frontend-ci:
+    name: Frontend CI (Lint & Build)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código Fonte
+        uses: actions/checkout@v4
+
+      - name: Configurar Bun Runtime
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Instalar Dependências do Frontend
+        run: |
+          cd TP5/frontend
+          bun install --frozen-lockfile
+
+      - name: Executar Linter (Oxlint)
+        run: |
+          cd TP5/frontend
+          bun run lint
+
+      - name: Compilar Bundle Estático de Produção (Vite)
+        run: |
+          cd TP5/frontend
+          bun run build
+
+      - name: Publicar Artefato do Frontend (Dist)
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: TP5/frontend/dist/
+
+  # =============================================================
+  # ETAPA 3: Build das Imagens Docker Multi-Stage (Conteinerização)
+  # =============================================================
+  docker-build:
+    name: Docker Multi-Stage Builds
+    needs: [backend-ci, frontend-ci]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código Fonte
+        uses: actions/checkout@v4
+
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Imagem Docker - task-service
+        uses: docker/build-push-action@v5
+        with:
+          context: TP5/task-service
+          file: TP5/task-service/Dockerfile
+          push: false
+          tags: taskmanager/task-service:latest,taskmanager/task-service:${{ github.sha }}
+
+      - name: Build Imagem Docker - notification-service
+        uses: docker/build-push-action@v5
+        with:
+          context: TP5/notification-service
+          file: TP5/notification-service/Dockerfile
+          push: false
+          tags: taskmanager/notification-service:latest,taskmanager/notification-service:${{ github.sha }}
+
+      - name: Build Imagem Docker - frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: TP5/frontend
+          file: TP5/frontend/Dockerfile
+          push: false
+          tags: taskmanager/frontend:latest,taskmanager/frontend:${{ github.sha }}
+
+  # =============================================================
+  # ETAPA 4: Validação dos Manifestos Kubernetes e Simulação de CD
+  # =============================================================
+  k8s-cd-validation:
+    name: Kubernetes Manifests & CD Simulation
+    needs: [docker-build]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código Fonte
+        uses: actions/checkout@v4
+
+      - name: Configurar Ferramenta Kubeconform
+        run: |
+          curl -sL https://github.com/yannh/kubeconform/releases/latest/download/kubeconform-linux-amd64.tar.gz | tar -xz
+          sudo mv kubeconform /usr/local/bin/
+
+      - name: Validar Sintaxe e Schema dos Manifestos Kubernetes
+        run: |
+          kubeconform -strict -summary TP5/k8s/
+
+      - name: Configurar Cluster Kubernetes Simulado (Kind)
+        uses: helm/kind-action@v1.10.0
+        with:
+          cluster_name: taskmanager-ci-cluster
+
+      - name: Aplicar Manifestos no Cluster de Staging/Produção
+        run: |
+          kubectl apply -f TP5/k8s/00-namespace.yaml
+          kubectl apply -f TP5/k8s/01-configmap.yaml
+          kubectl apply -f TP5/k8s/02-secrets.yaml
+          kubectl apply -f TP5/k8s/10-rabbitmq.yaml
+          kubectl apply -f TP5/k8s/11-zipkin.yaml
+          kubectl apply -f TP5/k8s/12-prometheus.yaml
+          kubectl apply -f TP5/k8s/20-task-service.yaml
+          kubectl apply -f TP5/k8s/21-notification-service.yaml
+          kubectl apply -f TP5/k8s/30-frontend.yaml
+          kubectl apply -f TP5/k8s/40-ingress.yaml
+
+      - name: Verificar Recursos Criados no Namespace taskmanager-prod
+        run: |
+          kubectl get all -n taskmanager-prod
+          kubectl get hpa -n taskmanager-prod
+          kubectl get ingress -n taskmanager-prod

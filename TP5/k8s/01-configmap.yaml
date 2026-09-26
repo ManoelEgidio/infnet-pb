@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: taskmanager-config
+  namespace: taskmanager-prod
+  labels:
+    app.kubernetes.io/name: taskmanager-system
+    app.kubernetes.io/environment: production
+data:
+  SPRING_PROFILES_ACTIVE: "prod"
+  RABBITMQ_HOST: "rabbitmq-service"
+  RABBITMQ_PORT: "5672"
+  ZIPKIN_ENDPOINT: "http://zipkin-service:9411/api/v2/spans"
+  SERVER_PORT_TASK: "8080"
+  SERVER_PORT_NOTIFICATION: "8082"
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health,info,metrics,prometheus"

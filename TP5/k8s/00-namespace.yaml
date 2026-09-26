@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: taskmanager-prod
+  labels:
+    app.kubernetes.io/name: taskmanager-system
+    app.kubernetes.io/environment: production
+    app.kubernetes.io/managed-by: kubernetes
