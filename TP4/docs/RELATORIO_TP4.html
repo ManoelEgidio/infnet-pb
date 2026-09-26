@@ -101,7 +101,7 @@
     A quarta etapa do projeto de bloco teve como objetivo refatorar a comunicação distribuída da aplicação TaskManager PB. Anteriormente, a integração entre o serviço de tarefas e o serviço de notificações ocorria por meio de chamadas HTTP síncronas com OpenFeign (TP3). Embora funcional, esse modelo impunha acoplamento temporal e dependência de disponibilidade imediata. A arquitetura foi refatorada para o paradigma orientado a eventos (Event-Driven Architecture - EDA), adotando o RabbitMQ como message broker assíncrono.
   </p>
 
-  <h2>2. Avaliação de Arquitetura Orientada a Eventos: Prós e Contras</h2>
+  <h2>2. Subcompetência 1: Avaliação de Arquitetura Orientada a Eventos (Prós e Contras)</h2>
   <p>
     A transição de uma comunicação fortemente acoplada para um modelo orientado a eventos traz vantagens operacionais e arquiteturais, mas também introduz novos desafios que devem ser balanceados:
   </p>
@@ -123,7 +123,7 @@
     </li>
   </ul>
 
-  <h2>3. Padrões de Mensagens Implementados</h2>
+  <h2>3. Subcompetência 2: Desenvolvimento de Padrões de Mensagens</h2>
   <p>
     Foram desenvolvidos quatro padrões essenciais de mensageria para atender a múltiplos cenários de negócio:
   </p>
@@ -134,7 +134,7 @@
     <li><strong>Tratamento de Falhas com Fila de Mensagens Mortas (Dead Letter Queue - DLQ):</strong> Mensagens que falham após 3 tentativas com backoff exponencial ou que são explicitamente rejeitadas são desviadas para a fila <code>task.dead-letter.queue</code>, impedindo perdas de dados e viabilizando reprocessamento posterior.</li>
   </ul>
 
-  <h2>4. Documentação Arquitetural e Fluxo de Mensagens</h2>
+  <h2>4. Subcompetência 3: Documentação Arquitetural e Fluxo de Mensagens</h2>
   <p>
     A topologia da solução é composta pelo produtor (<code>task-service :8080</code>), pelo broker (<code>RabbitMQ 3.13</code>) e pelo consumidor (<code>notification-service :8082</code>).
   </p>
@@ -159,7 +159,7 @@
         v
 [Central de Notificações / React UI]</pre>
 
-  <h2>5. Abstrações Spring Boot e Configuração do RabbitMQ</h2>
+  <h2>5. Subcompetência 4: Abstrações Spring Boot e Configuração do RabbitMQ</h2>
   <p>
     A integração utilizou a biblioteca <code>spring-boot-starter-amqp</code>:
   </p>
@@ -169,7 +169,7 @@
     <li><strong>Execução Contida via Docker:</strong> Instanciação do RabbitMQ 3.13 através de <code>docker-compose.yml</code> com portas 5672 (AMQP) e 15672 (Management Console).</li>
   </ul>
 
-  <h2>6. Testes Automatizados da Arquitetura Orientada a Eventos</h2>
+  <h2>6. Subcompetência 5: Testes Automatizados da Arquitetura Orientada a Eventos</h2>
   <p>
     Foram aplicados testes automatizados utilizando <code>spring-rabbit-test</code> e MockMvc:
   </p>
@@ -181,13 +181,13 @@
     Todos os testes da camada de mensageria foram aprovados com 100% de sucesso.
   </p>
 
-  <h2>7. Tabela de Atendimento da Rubrica</h2>
+  <h2>7. Matriz de Atendimento das Subcompetências da Rubrica</h2>
   <table>
     <thead>
       <tr>
-        <th>Item da Rubrica</th>
+        <th>Subcompetência da Rubrica</th>
         <th>Status</th>
-        <th>Evidência no Código / Projeto</th>
+        <th>Evidência Técnica no Projeto</th>
       </tr>
     </thead>
     <tbody>

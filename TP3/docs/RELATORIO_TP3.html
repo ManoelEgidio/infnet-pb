@@ -101,7 +101,7 @@
     Este relatório documenta a evolução da aplicação TaskManager PB da sua arquitetura monolítica para uma arquitetura distribuída baseada em microsserviços. O objetivo central desta etapa consistiu na separação de responsabilidades e desacoplamento do domínio de Notificações, criando um microsserviço autônomo e integrando-o ao serviço principal de tarefas por meio de comunicação RESTful utilizando Spring Boot e Spring Cloud OpenFeign.
   </p>
 
-  <h2>2. Atualização do Modelo de Domínio</h2>
+  <h2>2. Subcompetência 1: Atualização do Modelo de Domínio</h2>
   <p>
     Seguindo as diretrizes do Domain-Driven Design (DDD), o modelo de domínio do sistema foi refinado para isolar o bounded context de Notificações em relação ao bounded context de Gestão de Tarefas:
   </p>
@@ -110,7 +110,7 @@
     <li><strong>Bounded Context de Notificações (notification-service):</strong> Microsserviço independente com base de dados própria (H2 em memória: notificationdb), responsável pelo ciclo de vida das entidades Notification, canais de entrega (IN_APP, EMAIL, SMS) e tipos de eventos (TASK_CREATED, TASK_STATUS_CHANGED, TASK_DELETED).</li>
   </ul>
 
-  <h2>3. Criação de Endpoints da API REST</h2>
+  <h2>3. Subcompetência 2: Criação de Endpoints da API REST</h2>
   <p>
     Foram implementados novos contratos e endpoints RESTful para viabilizar as operações do novo microsserviço na porta 8082:
   </p>
@@ -122,7 +122,7 @@
     <li><code>PATCH /api/notifications/read-all</code>: Marca em lote todas as notificações pendentes de um destinatário.</li>
   </ul>
 
-  <h2>4. Implementação de Microsserviço com Spring Boot e Spring Cloud</h2>
+  <h2>4. Subcompetência 3: Implementação de Microsserviço (Spring Boot e Spring Cloud)</h2>
   <p>
     A implementação dos microsserviços utilizou o ecossistema Spring:
   </p>
@@ -132,7 +132,7 @@
     <li><strong>Mecanismo de Fallback (Resiliência):</strong> Implementação da classe <code>NotificationClientFallback</code>. Caso o <code>notification-service</code> esteja temporariamente indisponível ou ocorra falha de rede, a falha é degradada graciosamente com log de aviso, sem comprometer o fluxo principal de persistência das tarefas.</li>
   </ul>
 
-  <h2>5. Expansão da Cobertura de Testes Automatizados</h2>
+  <h2>5. Subcompetência 4: Expansão da Cobertura de Testes Automatizados</h2>
   <p>
     A suíte de testes foi ampliada em ambos os microsserviços, cobrindo testes unitários, testes de integração de repositórios JPA e validação de contratos de API com MockMvc:
   </p>
@@ -147,7 +147,7 @@
     Todos os 18 testes automatizados foram executados e aprovados com 100% de sucesso.
   </p>
 
-  <h2>6. Componentes da Interface de Usuário (React)</h2>
+  <h2>6. Subcompetência 5: Componentes da Interface de Usuário (React)</h2>
   <p>
     O frontend React foi adaptado para consumir os dois microsserviços:
   </p>
@@ -156,13 +156,13 @@
     <li><strong>Indicador de Saúde dos Serviços (Navbar):</strong> Monitor em tempo real verificando a disponibilidade do <code>task-service (:8080)</code> e do <code>notification-service (:8082)</code> com polling a cada 8 segundos.</li>
   </ul>
 
-  <h2>7. Tabela de Atendimento da Rubrica</h2>
+  <h2>7. Matriz de Atendimento das Subcompetências da Rubrica</h2>
   <table>
     <thead>
       <tr>
-        <th>Item da Rubrica</th>
+        <th>Subcompetência da Rubrica</th>
         <th>Status</th>
-        <th>Evidência no Código / Projeto</th>
+        <th>Evidência Técnica no Projeto</th>
       </tr>
     </thead>
     <tbody>
