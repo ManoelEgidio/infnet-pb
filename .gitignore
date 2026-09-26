@@ -24,3 +24,7 @@ out/
 *.ipr
 .DS_Store
 Thumbs.db
+
+# Documents & Artifacts
+*.pdf
+**/*.pdf
