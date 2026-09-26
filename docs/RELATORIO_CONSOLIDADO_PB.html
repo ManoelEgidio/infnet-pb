@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Manoel_Egidio_PB</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm 20mm;
+    }
+    body {
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      color: #000000;
+      line-height: 1.5;
+      font-size: 11pt;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+    h1 {
+      font-size: 16pt;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 6px;
+      color: #000000;
+      text-align: left;
+    }
+    .meta {
+      font-size: 10pt;
+      margin-bottom: 16px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #000000;
+    }
+    h2 {
+      font-size: 13pt;
+      font-weight: bold;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      color: #000000;
+    }
+    h3 {
+      font-size: 11pt;
+      font-weight: bold;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      color: #000000;
+    }
+    p, ul, ol {
+      margin-top: 0;
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+    ul, ol {
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+      font-size: 9.5pt;
+    }
+    th, td {
+      border: 1px solid #000000;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      font-weight: bold;
+      background-color: #f0f0f0;
+    }
+    pre {
+      background-color: #f7f7f7;
+      border: 1px solid #cccccc;
+      padding: 8px 10px;
+      margin: 8px 0 10px;
+      font-family: Consolas, 'Courier New', Courier, monospace;
+      font-size: 9pt;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Relatório Técnico Consolidado do Projeto de Bloco (PB)</h1>
+  <div class="meta">
+    <strong>Disciplina:</strong> Engenharia de Softwares Escaláveis | <strong>Instituto Infnet</strong><br>
+    <strong>Aluno:</strong> Manoel Egidio | <strong>Ano Letivo:</strong> 2026<br>
+    <strong>Documento:</strong> Entrega Final Consolidada (TP1, TP2, TP3, TP4 e TP5)
+  </div>
+
+  <h2>1. Introdução e Visão Geral da Solução</h2>
+  <p>
+    Este relatório consolida a totalidade do trabalho prático desenvolvido ao longo do bloco de Engenharia de Softwares Escaláveis. O projeto, denominado TaskManager PB, foi concebido e evoluído segundo um processo ágil, incremental e iterativo, partindo de um monólito simples e avançando progressivamente até atingir uma arquitetura corporativa distribuída, orientada a eventos e pronta para operação em ambiente de produção em nuvem.
+  </p>
+  <p>
+    A trajetória de desenvolvimento abrangeu cinco etapas complementares:
+  </p>
+  <ol>
+    <li><strong>Etapa 1 (TP1):</strong> Construção do monólito base com Spring Boot 3, arquitetura em camadas, princípios DDD e interface web em React.</li>
+    <li><strong>Etapa 2 (TP2):</strong> Modelagem e implementação da camada de persistência relacional com Spring Data JPA, mapeamento ORM e subsistema de auditoria de histórico.</li>
+    <li><strong>Etapa 3 (TP3):</strong> Decomposição arquitetural com a introdução do microsserviço de notificações e integração síncrona via Spring Cloud OpenFeign com fallback resiliente.</li>
+    <li><strong>Etapa 4 (TP4):</strong> Refatoração para Arquitetura Orientada a Eventos (EDA) utilizando o RabbitMQ como message broker assíncrono (exchanges Direct, Topic, Fanout e DLQ).</li>
+    <li><strong>Etapa 5 (TP5):</strong> Preparação para operação em produção com conteinerização Docker multiestágio, orquestração elástica com Kubernetes (HPA de 2 a 10 pods), observabilidade (Actuator Probes, Prometheus, Zipkin Tracing) e esteira automatizada de CI/CD com GitHub Actions.</li>
+  </ol>
+
+  <h2>2. Etapa 1: Construção do Monólito com Spring Boot</h2>
+  <p>
+    Na etapa inicial, foi estruturado o núcleo do sistema de gerenciamento de tarefas seguindo boas práticas de engenharia de software:
+  </p>
+  <ul>
+    <li><strong>Design em Camadas:</strong> Separação rígida de responsabilidades em controladores (camada de apresentação REST), serviços (regras de negócio e orquestração) e repositórios (abstração de acesso a dados).</li>
+    <li><strong>Autoconfiguração e Gestão de Dependências:</strong> Uso do Spring Boot 3.4 com starter dependencies gerenciadas via Gradle, eliminando configurações manuais redundantes e preparando o projeto para manutenibilidade.</li>
+    <li><strong>APIs RESTful com Spring MVC:</strong> Exposição de endpoints HTTP com métodos semânticos (GET, POST, PUT, PATCH, DELETE), DTOs validados via Bean Validation (<code>@NotNull</code>, <code>@NotBlank</code>, <code>@Future</code>) e tratamento centralizado de exceções com <code>@RestControllerAdvice</code>.</li>
+    <li><strong>Princípios SOLID e Clean Code:</strong> Inversão de dependência mediante injeção por construtor, classes com responsabilidade única e desacoplamento de contratos.</li>
+    <li><strong>Domain-Driven Design (DDD):</strong> Identificação do domínio central (Core Domain) de Gestão de Tarefas, Value Objects para invariantes de negócio (como prioridades HIGH/MEDIUM/LOW e status PENDING/IN_PROGRESS/COMPLETED) e separação de bounded contexts.</li>
+    <li><strong>Interface React:</strong> Desenvolvimento de Single Page Application (SPA) para consumo das APIs REST, proporcionando gerenciamento interativo de tarefas e métricas.</li>
+  </ul>
+
+  <h2>3. Etapa 2: Camada de Persistência com JPA e Spring Data</h2>
+  <p>
+    A segunda etapa substituiu coleções voláteis em memória por uma camada de persistência relacional robusta com Spring Data JPA e banco de dados H2:
+  </p>
+  <ul>
+    <li><strong>Mapeamento Objeto-Relacional (ORM):</strong> Aplicação criteriosa das anotações JPA (<code>@Entity</code>, <code>@Table</code>, <code>@Id</code>, <code>@GeneratedValue</code>, <code>@Column</code>, <code>@Enumerated</code>) nas entidades de domínio <code>Task</code>, <code>Category</code> e <code>TaskHistory</code>.</li>
+    <li><strong>Relacionamentos e Isolamento:</strong> Modelagem de relacionamentos <code>@ManyToOne</code> com carregamento preguiçoso (<code>FetchType.LAZY</code>) entre tarefas e categorias, assegurando isolamento de agregados e prevenindo o problema de consultas N+1.</li>
+    <li><strong>Repositórios Spring Data:</strong> Criação de interfaces estendendo <code>JpaRepository</code>, aproveitando derived query methods e consultas customizadas em JPQL para buscas por status, prioridade e categoria.</li>
+    <li><strong>Controle Transacional e Integridade:</strong> Uso de <code>@Transactional</code> em operações de escrita no serviço para garantir atomicidade, consistência e rollback automático em falhas.</li>
+    <li><strong>Histórico de Mudanças e Auditoria:</strong> Implementação da entidade <code>TaskHistory</code> registrando todas as transições de estado, alterações de dados, autor da modificação e timestamp, com endpoint dedicado para consulta cronológica de auditoria.</li>
+  </ul>
+
+  <h2>4. Etapa 3: Microsserviço com Spring Boot e Spring Cloud</h2>
+  <p>
+    A terceira etapa realizou a primeira quebra arquitetural do monólito para introduzir o microsserviço independente de notificações:
+  </p>
+  <ul>
+    <li><strong>Segregação de Responsabilidades:</strong> O bounded context de Notificações foi isolado no <code>notification-service</code> (porta 8082), com sua própria base de dados em memória (<code>notificationdb</code>), desacoplado do <code>task-service</code> (porta 8080).</li>
+    <li><strong>Endpoints REST do Microsserviço:</strong> Implementação de endpoints para cadastro de alertas, listagem filtrada por destinatário, contadores de mensagens não lidas e atualização de status de leitura.</li>
+    <li><strong>Spring Cloud OpenFeign e Resiliência:</strong> No <code>task-service</code>, foi configurada a interface <code>NotificationClient</code> para acionamento HTTP declarativo do serviço de notificações. Para garantir que o sistema não falhasse em cascata caso o serviço remoto estivesse indisponível, foi implementado o padrão de fallback (<code>NotificationClientFallback</code>), fornecendo degradação graciosa.</li>
+    <li><strong>Cobertura de Testes:</strong> Ampliação das suítes de testes com 18 testes automatizados aprovados, cobrindo controllers, serviços e repositórios de ambos os serviços.</li>
+    <li><strong>Interface do Usuário:</strong> Inclusão da Central de Notificações em painel lateral deslizante (Drawer) e pílulas de status verificando a integridade dos serviços em tempo real.</li>
+  </ul>
+
+  <h2>5. Etapa 4: Refatoração para Arquitetura Orientada a Eventos (EDA)</h2>
+  <p>
+    A quarta etapa modernizou a comunicação entre microsserviços, substituindo as chamadas HTTP síncronas por mensageria assíncrona orientada a eventos com RabbitMQ:
+  </p>
+  <ul>
+    <li><strong>Avaliação de Trade-offs (Prós e Contras):</strong> Demonstração de que o desacoplamento temporal, o amortecimento de picos de carga (load leveling) e a tolerância a falhas justificam a complexidade adicional inerente ao modelo de consistência eventual e rastreamento distribuído.</li>
+    <li><strong>Padrões de Mensagens Desenvolvidos:</strong>
+      <ul>
+        <li><em>Direct Exchange:</em> Roteamento ponto a ponto com chave exata para eventos transacionais de criação, alteração e exclusão de tarefas.</li>
+        <li><em>Topic Exchange:</em> Roteamento seletivo com chaves padronizadas (<code>task.priority.*</code>) para direcionamento de tarefas urgentes à fila de alta prioridade.</li>
+        <li><em>Fanout Exchange:</em> Difusão em broadcast para comunicados sistêmicos operacionais direcionados a todos os usuários.</li>
+        <li><em>Dead Letter Queue (DLQ):</em> Roteamento automático de mensagens com erro irrecuperável ou rejeitadas após 3 tentativas com backoff exponencial para análise e reprocessamento posterior.</li>
+      </ul>
+    </li>
+    <li><strong>Abstrações Spring AMQP:</strong> Uso de <code>RabbitTemplate</code> para publicação não bloqueante e anotações <code>@RabbitListener</code> nos consumidores, com serialização JSON padronizada via <code>Jackson2JsonMessageConverter</code>.</li>
+    <li><strong>Documentação Arquitetural:</strong> Elaboração de diagramas descritivos de topologia de mensageria e fluxos de eventos em formato de sequência.</li>
+  </ul>
+
+  <h2>6. Etapa 5: Operação em Produção com Docker, Kubernetes e CI/CD</h2>
+  <p>
+    A etapa final preparou o ecossistema para execução em ambiente produtivo escalável:
+  </p>
+  <ul>
+    <li><strong>Conteinerização Multi-Stage Docker:</strong> Dockerfiles mínimos baseados em Alpine Linux (JDK 21 builder para JRE 21 runtime nos backends e Bun builder para Nginx nos frontends). Execução segura com usuário não-root (<code>appuser</code>) e verificações nativas de saúde (<code>HEALTHCHECK</code>).</li>
+    <li><strong>Orquestração com Kubernetes:</strong> Manifestos completos no namespace isolado <code>taskmanager-prod</code>, contemplando ConfigMaps, Secrets, Deployments com atualização progressiva <code>RollingUpdate</code> (zero indisponibilidade), Services (ClusterIP e NodePort) e Ingress.</li>
+    <li><strong>Escalabilidade Automática (HPA):</strong> Configuração de Horizontal Pod Autoscalers para ambos os microsserviços com escala automática de 2 a 10 réplicas quando a utilização média de CPU ultrapassa 70%.</li>
+    <li><strong>Observabilidade Tridimensional:</strong>
+      <ul>
+        <li><em>Probes Kubernetes:</em> Spring Boot Actuator configurado com endpoints de liveness (<code>/actuator/health/liveness</code>) e readiness (<code>/actuator/health/readiness</code>).</li>
+        <li><em>Métricas Abertas:</em> Endpoint <code>/actuator/prometheus</code> raspado periodicamente pelo servidor Prometheus (porta 9090).</li>
+        <li><em>Rastreamento Distribuído:</em> Instrumentação com Micrometer Tracing Brave e OpenZipkin (porta 9411), propagando <code>traceId</code> e <code>spanId</code> entre requisições HTTP e mensagens AMQP do RabbitMQ, correlacionados nos logs das aplicações.</li>
+      </ul>
+    </li>
+    <li><strong>Automação CI/CD com GitHub Actions:</strong> Pipeline completo em <code>.github/workflows/ci-cd-tp5.yml</code> executando testes em matriz paralela, validação de lint, build das imagens Docker e validação de schemas Kubernetes com <code>kubeconform</code> e cluster simulado Kind.</li>
+    <li><strong>Testes Abrangentes e Repositório Git:</strong> Cobertura de testes unitários, testes de mensageria e testes de integração de observabilidade (<code>ActuatorObservabilityIntegrationTest</code>) com 100% de sucesso. Todo o código versionado no Git com controle criterioso de <code>.gitignore</code>.</li>
+  </ul>
+
+  <h2>7. Tabela Geral de Atendimento das 27 Rubricas do Projeto de Bloco</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Etapa / Módulo</th>
+        <th>Critério da Rubrica</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Etapa 1 -->
+      <tr>
+        <td>1. Monólito Spring Boot</td>
+        <td>Design em camadas (controle, serviço e repositório)</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>1. Monólito Spring Boot</td>
+        <td>Uso de autoconfiguração do Spring Boot para simplificar o setup</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>1. Monólito Spring Boot</td>
+        <td>Gestão de dependências eficaz para escalabilidade e manutenção</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>1. Monólito Spring Boot</td>
+        <td>Implementação de APIs REST com anotações Spring MVC</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>1. Monólito Spring Boot</td>
+        <td>Aplicação de princípios SOLID e padrões de design</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>1. Monólito Spring Boot</td>
+        <td>Modelagem com conceitos de DDD (domínios, bounded contexts)</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>1. Monólito Spring Boot</td>
+        <td>Interface de usuário básica com React consumindo o backend</td>
+        <td>Demonstrado</td>
+      </tr>
+      <!-- Etapa 2 -->
+      <tr>
+        <td>2. Persistência JPA / Data</td>
+        <td>Modelagem considerando requisitos de consulta e isolamento</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>2. Persistência JPA / Data</td>
+        <td>Uso de anotações JPA para mapeamento objeto-relacional</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>2. Persistência JPA / Data</td>
+        <td>Criação e uso de Repositórios Spring Data para otimização</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>2. Persistência JPA / Data</td>
+        <td>Gestão de acesso a dados assegurando integridade e performance</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>2. Persistência JPA / Data</td>
+        <td>Registro e consulta do histórico de mudanças (auditoria)</td>
+        <td>Demonstrado</td>
+      </tr>
+      <!-- Etapa 3 -->
+      <tr>
+        <td>3. Microsserviço Conectado</td>
+        <td>Incorporação de novo serviço no modelo de domínio</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>3. Microsserviço Conectado</td>
+        <td>Implementação de novos endpoints para acesso via REST API</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>3. Microsserviço Conectado</td>
+        <td>Uso de Spring Boot e Spring Cloud para comunicação distribuída</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>3. Microsserviço Conectado</td>
+        <td>Expansão da cobertura de testes para incluir o microsserviço</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>3. Microsserviço Conectado</td>
+        <td>Adição de componentes na interface para o novo microsserviço</td>
+        <td>Demonstrado</td>
+      </tr>
+      <!-- Etapa 4 -->
+      <tr>
+        <td>4. Arquitetura EDA</td>
+        <td>Implementação de padrões EDA com RabbitMQ e Spring AMQP</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>4. Arquitetura EDA</td>
+        <td>Implementação prática em arquitetura orientada a eventos</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>4. Arquitetura EDA</td>
+        <td>Apresentação técnica dos prós e contras de EDA</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>4. Arquitetura EDA</td>
+        <td>Documentação arquitetural com diagramas e fluxos de sequência</td>
+        <td>Demonstrado</td>
+      </tr>
+      <!-- Etapa 5 -->
+      <tr>
+        <td>5. Operação em Produção</td>
+        <td>Conteinerização dos microsserviços com Docker multi-stage</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>5. Operação em Produção</td>
+        <td>Orquestração e escalabilidade com Kubernetes (HPA 2-10 pods)</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>5. Operação em Produção</td>
+        <td>Ferramentas de agregação de logs e rastreamento de transações</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>5. Operação em Produção</td>
+        <td>Desenvolvimento e aplicação de testes abrangentes no sistema</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>5. Operação em Produção</td>
+        <td>Apresentação da implantação e monitoramento em ambiente simulado</td>
+        <td>Demonstrado</td>
+      </tr>
+      <tr>
+        <td>5. Operação em Produção</td>
+        <td>Apresentação do código-fonte em repositório Git</td>
+        <td>Demonstrado</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>8. Conclusão Final</h2>
+  <p>
+    O Projeto de Bloco de Engenharia de Softwares Escaláveis cumpriu integralmente a sua proposta pedagógica e técnica. A evolução progressiva demonstrou como uma aplicação real pode partir de um monólito inicial e, por meio de refatorações fundamentadas em Domain-Driven Design, desacoplamento assíncrono com mensageria e práticas de engenharia de confiabilidade (SRE/DevOps), transformar-se em um sistema distribuído de alto desempenho, tolerante a falhas, observável e preparado para escalonamento automático em ambientes corporativos de produção.
+  </p>
+
+</body>
+</html>

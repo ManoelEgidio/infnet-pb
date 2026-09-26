@@ -1,545 +1,203 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manoel_Egidio_PB_TP3</title>
-    <style>
-        :root {
-            --primary: #1e3a8a;
-            --secondary: #2563eb;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --border: #e2e8f0;
-            --success: #16a34a;
-            --accent: #6366f1;
-        }
-
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            color: #334155;
-            max-width: 920px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #f1f5f9;
-        }
-
-        .paper {
-            background: #ffffff;
-            padding: 50px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-
-        .no-print-bar {
-            position: sticky;
-            top: 10px;
-            background: #1e293b;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.3);
-            z-index: 100;
-        }
-
-        .btn-print {
-            background: #2563eb;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-
-        .btn-print:hover {
-            background: #1d4ed8;
-        }
-
-        header {
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 20px;
-            margin-bottom: 30px;
-        }
-
-        h1 {
-            color: var(--primary);
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            color: #64748b;
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .meta-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-            background: #f8fafc;
-            padding: 12px;
-            border-radius: 6px;
-            font-size: 13px;
-        }
-
-        h2 {
-            color: var(--primary);
-            font-size: 18px;
-            border-left: 4px solid var(--secondary);
-            padding-left: 10px;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        h3 {
-            color: #1e293b;
-            font-size: 15px;
-            margin-top: 20px;
-            margin-bottom: 8px;
-        }
-
-        p, ul, ol {
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        ul, ol {
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 6px;
-        }
-
-        .code-box {
-            background: #0f172a;
-            color: #f8fafc;
-            padding: 14px;
-            border-radius: 6px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 12px;
-            overflow-x: auto;
-            margin: 12px 0;
-            line-height: 1.4;
-        }
-
-        .highlight-box {
-            background: #eff6ff;
-            border-left: 4px solid #3b82f6;
-            padding: 12px 16px;
-            border-radius: 0 6px 6px 0;
-            margin: 15px 0;
-            font-size: 13.5px;
-        }
-
-        .rubric-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            font-size: 13px;
-        }
-
-        .rubric-table th, .rubric-table td {
-            border: 1px solid var(--border);
-            padding: 10px 12px;
-            text-align: left;
-        }
-
-        .rubric-table th {
-            background-color: #f1f5f9;
-            color: var(--primary);
-        }
-
-        .badge-demonstrated {
-            background: #dcfce7;
-            color: #166534;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 11px;
-            display: inline-block;
-        }
-
-        .architecture-diagram {
-            background: #f8fafc;
-            border: 1px dashed #cbd5e1;
-            padding: 15px;
-            border-radius: 6px;
-            text-align: left;
-            margin: 15px 0;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 12px;
-            line-height: 1.4;
-            color: #1e293b;
-            overflow-x: auto;
-        }
-
-        @media print {
-            body {
-                background: white;
-                padding: 0;
-            }
-            .paper {
-                box-shadow: none;
-                padding: 0;
-            }
-            .no-print-bar {
-                display: none;
-            }
-            @page {
-                margin: 20mm;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Manoel_Egidio_PB_TP3</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm 20mm;
+    }
+    body {
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      color: #000000;
+      line-height: 1.5;
+      font-size: 11pt;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+    }
+    h1 {
+      font-size: 16pt;
+      font-weight: bold;
+      margin-top: 0;
+      margin-bottom: 6px;
+      color: #000000;
+      text-align: left;
+    }
+    .meta {
+      font-size: 10pt;
+      margin-bottom: 16px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #000000;
+    }
+    h2 {
+      font-size: 13pt;
+      font-weight: bold;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      color: #000000;
+    }
+    h3 {
+      font-size: 11pt;
+      font-weight: bold;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      color: #000000;
+    }
+    p, ul, ol {
+      margin-top: 0;
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+    ul, ol {
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 4px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 10px 0 14px;
+      font-size: 9.5pt;
+    }
+    th, td {
+      border: 1px solid #000000;
+      padding: 6px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      font-weight: bold;
+      background-color: #f0f0f0;
+    }
+    pre {
+      background-color: #f7f7f7;
+      border: 1px solid #cccccc;
+      padding: 8px 10px;
+      margin: 8px 0 10px;
+      font-family: Consolas, 'Courier New', Courier, monospace;
+      font-size: 9pt;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    .page-break {
+      page-break-before: always;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="no-print-bar">
-        <span><strong>Trabalho Prático 3 (TP3)</strong> • Engenharia de Softwares Escaláveis</span>
-        <button class="btn-print" onclick="window.print()">Salvar como PDF</button>
-    </div>
+  <h1>Relatório Técnico - Criação e Integração de Microsserviço (TP3)</h1>
+  <div class="meta">
+    <strong>Curso:</strong> Engenharia de Softwares Escaláveis (Projeto de Bloco) | <strong>Instituto Infnet</strong><br>
+    <strong>Aluno:</strong> Manoel Egidio | <strong>Entrega:</strong> Terceira Etapa (TP3)
+  </div>
 
-    <div class="paper">
-        <header>
-            <h1>Relatório Técnico de Arquitetura e Engenharia de Software</h1>
-            <div class="subtitle">Terceira Entrega (TP3) • Criação e Integração de Microsserviço com Spring Cloud</div>
-            
-            <div class="meta-info">
-                <div>
-                    <strong>Estudante:</strong> Manoel Egidio<br/>
-                    <strong>Disciplina:</strong> Engenharia de Softwares Escaláveis<br/>
-                    <strong>Projeto:</strong> Sistema Distribuído de Gerenciamento de Tarefas &amp; Notificações
-                </div>
-                <div>
-                    <strong>Instituição:</strong> Instituto Infnet<br/>
-                    <strong>Tecnologias:</strong> Spring Boot 3.4.3, Spring Cloud OpenFeign 2024, JPA, React 19, Vite<br/>
-                    <strong>Data da Entrega:</strong> 26 de Setembro de 2026
-                </div>
-            </div>
-        </header>
+  <h2>1. Introdução</h2>
+  <p>
+    Este relatório documenta a evolução da aplicação TaskManager PB da sua arquitetura monolítica para uma arquitetura distribuída baseada em microsserviços. O objetivo central desta etapa consistiu na separação de responsabilidades e desacoplamento do domínio de Notificações, criando um microsserviço autônomo e integrando-o ao serviço principal de tarefas por meio de comunicação RESTful utilizando Spring Boot e Spring Cloud OpenFeign.
+  </p>
 
-        <h2>1. Contexto e Objetivo da Etapa (TP3)</h2>
-        <p>
-            No escopo do curso de <strong>Engenharia de Softwares Escaláveis</strong>, a terceira etapa envolve a transição e expansão da aplicação monolítica anterior para uma <strong>arquitetura distribuída baseada em microsserviços</strong>.
-        </p>
-        <p>
-            O objetivo central foi desacoplar as responsabilidades de comunicação, eventos e entrega de alertas, criando um <strong>novo microsserviço autônomo (<code>notification-service</code>)</strong> construído com <strong>Spring Boot</strong> e integrado ao serviço central de tarefas (<code>task-service</code>) por meio de comunicação declarativa distribuída com <strong>Spring Cloud OpenFeign</strong>, aplicando os padrões de <em>Database-per-Service</em>, <em>Bounded Context</em> e <em>Graceful Degradation / Fallback</em>.
-        </p>
+  <h2>2. Atualização do Modelo de Domínio</h2>
+  <p>
+    Seguindo as diretrizes do Domain-Driven Design (DDD), o modelo de domínio do sistema foi refinado para isolar o bounded context de Notificações em relação ao bounded context de Gestão de Tarefas:
+  </p>
+  <ul>
+    <li><strong>Bounded Context Gestão de Tarefas (task-service):</strong> Mantém o agregado Task, Category e TaskHistory. Este serviço atua como consumidor do serviço de notificações, delegando os alertas operacionais.</li>
+    <li><strong>Bounded Context de Notificações (notification-service):</strong> Microsserviço independente com base de dados própria (H2 em memória: notificationdb), responsável pelo ciclo de vida das entidades Notification, canais de entrega (IN_APP, EMAIL, SMS) e tipos de eventos (TASK_CREATED, TASK_STATUS_CHANGED, TASK_DELETED).</li>
+  </ul>
 
-        <h2>2. Arquitetura do Sistema Distribuído</h2>
-        <p>
-            A solução foi estruturada em dois serviços de backend independentes e uma camada de apresentação front-end moderna e reativa:
-        </p>
-        
-        <div class="architecture-diagram">
-+---------------------------------------------------------------------------------------------------+
-|                                       CAMADA DE APRESENTAÇÃO                                      |
-|                                       React 19 + Vite (Porta 5173)                                |
-|  - Kanban Board & Tarefas          - Central de Notificações Drawer      - Monitor de Microsserviços|
-+------------------------------------+-------------------------------------+------------------------+
-                                     |                                     |
-               HTTP REST /api/tasks  |               HTTP REST /api/notifications
-                                     v                                     v
-+----------------------------------------------------+  +-------------------------------------------+
-|                   TASK-SERVICE                     |  |            NOTIFICATION-SERVICE           |
-|                (Spring Boot :8080)                 |  |             (Spring Boot :8082)           |
-|                                                    |  |                                           |
-|  * Bounded Context: Gestão de Tarefas              |  |  * Bounded Context: Notificações & Alertas |
-|  * Spring Cloud OpenFeign: NotificationClient      |  |  * REST Controller: /api/notifications    |
-|  * Fallback de Resiliência: Graceful Degradation   |  |  * Service: NotificationServiceImpl       |
-|  * Repositórios: TaskRepository, CategoryRepo      |  |  * Repositório Dedicado: NotificationRepo |
-|  * Banco Dedicado: H2 (taskdb)                     |  |  * Banco Dedicado: H2 (notificationdb)    |
-+-------------------------+--------------------------+  +---------------------+---------------------+
-                          |                                                   ^
-                          |====== Chamada Distribuída Spring Cloud Feign =====|
-                          |       POST /api/notifications (Criação/Status)    |
-                          |       GET  /api/notifications/task/{id}          |
-                          +---------------------------------------------------+
-        </div>
+  <h2>3. Criação de Endpoints da API REST</h2>
+  <p>
+    Foram implementados novos contratos e endpoints RESTful para viabilizar as operações do novo microsserviço na porta 8082:
+  </p>
+  <ul>
+    <li><code>POST /api/notifications</code>: Cria e armazena uma nova notificação com base no DTO de requisição validado.</li>
+    <li><code>GET /api/notifications</code>: Consulta a listagem de notificações com suporte a filtros por destinatário e status de leitura.</li>
+    <li><code>GET /api/notifications/summary</code>: Retorna o total de notificações, contagem de pendentes e última atualização para o painel de interface.</li>
+    <li><code>PATCH /api/notifications/{id}/read</code>: Atualiza o estado da notificação para lida com registro do instante de leitura.</li>
+    <li><code>PATCH /api/notifications/read-all</code>: Marca em lote todas as notificações pendentes de um destinatário.</li>
+  </ul>
 
-        <h3>2.1. Princípios Arquiteturais Aplicados</h3>
-        <ul>
-            <li><strong>Separação de Responsabilidades (SRP / Bounded Contexts):</strong> O ciclo de vida da tarefa reside exclusivamente no <code>task-service</code>, enquanto as regras de alerta, canais (IN_APP, EMAIL, WEBHOOK), status de leitura e histórico de destinatários residem no <code>notification-service</code>.</li>
-            <li><strong>Database-per-Service:</strong> Cada microsserviço possui seu próprio banco de dados isolado (<code>taskdb</code> e <code>notificationdb</code>), impedindo acoplamento de tabelas ou joins entre serviços distintos.</li>
-            <li><strong>Comunicação Declarativa com Spring Cloud OpenFeign:</strong> A comunicação síncrona HTTP entre os serviços é realizada através de interfaces tipadas com anotações Spring MVC, eliminando boilerplate de HTTP clients.</li>
-            <li><strong>Resiliência e Tolerância a Falhas (Fallback Pattern):</strong> Caso o <code>notification-service</code> esteja temporariamente indisponível ou lento, o <code>NotificationClientFallback</code> no <code>task-service</code> absorve a falha, registrando log de contingência sem interromper o fluxo principal de tarefas do usuário.</li>
-        </ul>
+  <h2>4. Implementação de Microsserviço com Spring Boot e Spring Cloud</h2>
+  <p>
+    A implementação dos microsserviços utilizou o ecossistema Spring:
+  </p>
+  <ul>
+    <li><strong>Spring Boot 3.4.3:</strong> Inicialização simplificada com autoconfiguração e gestão de dependências via Gradle.</li>
+    <li><strong>Spring Cloud OpenFeign:</strong> No <code>task-service</code>, foi configurada a interface declarativa <code>NotificationClient</code>. Toda vez que uma tarefa é criada, concluída ou removida, o cliente Feign dispara chamadas HTTP assíncronas para o microsserviço de notificações.</li>
+    <li><strong>Mecanismo de Fallback (Resiliência):</strong> Implementação da classe <code>NotificationClientFallback</code>. Caso o <code>notification-service</code> esteja temporariamente indisponível ou ocorra falha de rede, a falha é degradada graciosamente com log de aviso, sem comprometer o fluxo principal de persistência das tarefas.</li>
+  </ul>
 
-        <h2>3. Atualização do Modelo de Domínio</h2>
-        <h3>3.1. Modelo do Microsserviço de Notificações (<code>notification-service</code>)</h3>
-        <p>
-            Foi modelada a entidade de domínio <code>Notification</code> contendo os seguintes atributos, índices e Value Objects:
-        </p>
-        <div class="code-box">@Entity
-@Table(name = "notifications", indexes = {
-    @Index(name = "idx_notifications_recipient", columnList = "recipient"),
-    @Index(name = "idx_notifications_is_read", columnList = "is_read"),
-    @Index(name = "idx_notifications_task_id", columnList = "task_id"),
-    @Index(name = "idx_notifications_created_at", columnList = "created_at")
-})
-public class Notification {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long taskId;
-    private String taskTitle;
-    private String recipient;
-    private String message;
-    @Enumerated(EnumType.STRING)
-    private NotificationType type;       // TASK_CREATED, STATUS_CHANGED, HIGH_PRIORITY_ALERT, etc.
-    @Enumerated(EnumType.STRING)
-    private NotificationChannel channel; // IN_APP, EMAIL, WEBHOOK
-    private boolean isRead;
-    private LocalDateTime createdAt;
-    private LocalDateTime readAt;
-    // Métodos de negócio: markAsRead(), etc.
-}</div>
+  <h2>5. Expansão da Cobertura de Testes Automatizados</h2>
+  <p>
+    A suíte de testes foi ampliada em ambos os microsserviços, cobrindo testes unitários, testes de integração de repositórios JPA e validação de contratos de API com MockMvc:
+  </p>
+  <ul>
+    <li><code>TaskManagerApplicationTests</code> (task-service): Ciclo de vida completo das tarefas, persistência e auditoria.</li>
+    <li><code>TaskHistoryRepositoryTest</code> (task-service): Consultas ordenadas e integridade relacional.</li>
+    <li><code>NotificationServiceTest</code> (notification-service): Regras de negócio, contadores e filtros de leitura.</li>
+    <li><code>NotificationControllerTest</code> (notification-service): Validação de requisições HTTP, paginação e status codes.</li>
+    <li><code>NotificationRepositoryTest</code> (notification-service): Queries customizadas por destinatário e contagem de não lidas.</li>
+  </ul>
+  <p>
+    Todos os 18 testes automatizados foram executados e aprovados com 100% de sucesso.
+  </p>
 
-        <h3>3.2. Atualização do Modelo no Serviço Principal (<code>task-service</code>)</h3>
-        <p>
-            O serviço principal incorporou o cliente distribuído <code>NotificationClient</code> diretamente na execução de suas operações de negócio (<code>createTask</code>, <code>updateTask</code>, <code>updateTaskStatus</code> e <code>deleteTask</code>).
-        </p>
-        <div class="code-box">@FeignClient(
-    name = "notification-service",
-    url = "${notification.service.url:http://localhost:8082}",
-    fallback = NotificationClientFallback.class
-)
-public interface NotificationClient {
-    @PostMapping("/api/notifications")
-    NotificationResponseClientDTO sendNotification(@RequestBody NotificationPayloadDTO request);
+  <h2>6. Componentes da Interface de Usuário (React)</h2>
+  <p>
+    O frontend React foi adaptado para consumir os dois microsserviços:
+  </p>
+  <ul>
+    <li><strong>Central de Notificações (Drawer):</strong> Painel lateral com badge dinâmico de notificações não lidas, listagem ordenada, opção de marcar individualmente como lida ou limpar todas em lote.</li>
+    <li><strong>Indicador de Saúde dos Serviços (Navbar):</strong> Monitor em tempo real verificando a disponibilidade do <code>task-service (:8080)</code> e do <code>notification-service (:8082)</code> com polling a cada 8 segundos.</li>
+  </ul>
 
-    @GetMapping("/api/notifications/task/{taskId}")
-    List&lt;NotificationResponseClientDTO&gt; getNotificationsByTaskId(@PathVariable("taskId") Long taskId);
-}</div>
+  <h2>7. Tabela de Atendimento da Rubrica</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Item da Rubrica</th>
+        <th>Status</th>
+        <th>Evidência no Código / Projeto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Incorporar um novo serviço no modelo de domínio refletindo mudanças na arquitetura</td>
+        <td>Demonstrado</td>
+        <td>Criação do microsserviço autônomo notification-service com domínio próprio e base de dados desacoplada.</td>
+      </tr>
+      <tr>
+        <td>Implementar novos endpoints para acesso ao microsserviço via REST API</td>
+        <td>Demonstrado</td>
+        <td>Endpoints REST criados em NotificationController para criação, consulta, sumarização e atualização.</td>
+      </tr>
+      <tr>
+        <td>Usar Spring Boot e Spring Cloud para desenvolvimento e comunicação distribuída</td>
+        <td>Demonstrado</td>
+        <td>Uso de Spring Boot 3.4.3 e Spring Cloud OpenFeign com NotificationClient e NotificationClientFallback.</td>
+      </tr>
+      <tr>
+        <td>Expandir a cobertura de testes para incluir o novo microsserviço e atualizações</td>
+        <td>Demonstrado</td>
+        <td>Suítes completas em ambos os projetos com 18 testes automatizados aprovados (MockMvc e Spring Data JPA).</td>
+      </tr>
+      <tr>
+        <td>Adicionar componentes na interface do usuário para interação com o novo microsserviço</td>
+        <td>Demonstrado</td>
+        <td>Desenvolvimento da Central de Notificações, badges e monitor de status de conectividade em tempo real.</td>
+      </tr>
+    </tbody>
+  </table>
 
-        <h2>4. Endpoints da API REST</h2>
-        <h3>4.1. Endpoints do Microsserviço de Notificações (<code>notification-service :8082</code>)</h3>
-        <table class="rubric-table">
-            <thead>
-                <tr>
-                    <th>Método</th>
-                    <th>Endpoint</th>
-                    <th>Descrição</th>
-                    <th>Resposta HTTP</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><code>POST</code></td>
-                    <td><code>/api/notifications</code></td>
-                    <td>Registra nova notificação a partir de eventos do sistema ou de tarefas</td>
-                    <td><code>201 Created</code></td>
-                </tr>
-                <tr>
-                    <td><code>GET</code></td>
-                    <td><code>/api/notifications</code></td>
-                    <td>Lista notificações com filtros opcionais por destinatário e não lidas</td>
-                    <td><code>200 OK</code></td>
-                </tr>
-                <tr>
-                    <td><code>GET</code></td>
-                    <td><code>/api/notifications/{id}</code></td>
-                    <td>Consulta detalhes de uma notificação por ID</td>
-                    <td><code>200 OK</code></td>
-                </tr>
-                <tr>
-                    <td><code>GET</code></td>
-                    <td><code>/api/notifications/task/{taskId}</code></td>
-                    <td>Retorna todos os alertas vinculados a uma tarefa específica</td>
-                    <td><code>200 OK</code></td>
-                </tr>
-                <tr>
-                    <td><code>GET</code></td>
-                    <td><code>/api/notifications/summary</code></td>
-                    <td>Retorna contadores consolidados (total, não lidas, lidas)</td>
-                    <td><code>200 OK</code></td>
-                </tr>
-                <tr>
-                    <td><code>PATCH</code></td>
-                    <td><code>/api/notifications/{id}/read</code></td>
-                    <td>Marca uma notificação específica como lida</td>
-                    <td><code>200 OK</code></td>
-                </tr>
-                <tr>
-                    <td><code>PATCH</code></td>
-                    <td><code>/api/notifications/read-all</code></td>
-                    <td>Marca todas as notificações pendentes como lidas em lote</td>
-                    <td><code>200 OK</code></td>
-                </tr>
-                <tr>
-                    <td><code>DELETE</code></td>
-                    <td><code>/api/notifications/{id}</code></td>
-                    <td>Remove uma notificação do sistema</td>
-                    <td><code>204 No Content</code></td>
-                </tr>
-                <tr>
-                    <td><code>POST</code></td>
-                    <td><code>/api/notifications/broadcast</code></td>
-                    <td>Emite alerta broadcast global para todos os usuários</td>
-                    <td><code>201 Created</code></td>
-                </tr>
-            </tbody>
-        </table>
+  <h2>8. Conclusão</h2>
+  <p>
+    A terceira etapa consolidou a transição da aplicação para a arquitetura orientada a serviços distribuídos. A segregação do domínio de notificações permitiu avaliar na prática o desacoplamento de responsabilidades, os benefícios do desenvolvimento independente por serviço e os padrões de resiliência necessários na comunicação distribuída.
+  </p>
 
-        <h3>4.2. Novo Endpoint Distribuído no Serviço Principal (<code>task-service :8080</code>)</h3>
-        <p>
-            Para demonstrar a comunicação transparente entre serviços, foi adicionado um endpoint que consulta o microsserviço de notificações via OpenFeign a partir da entidade de tarefa:
-        </p>
-        <div class="code-box">// GET http://localhost:8080/api/tasks/{id}/notifications
-@GetMapping("/{id}/notifications")
-public ResponseEntity&lt;List&lt;NotificationResponseClientDTO&gt;&gt; getTaskNotifications(@PathVariable Long id) {
-    List&lt;NotificationResponseClientDTO&gt; notifications = taskService.getTaskNotifications(id);
-    return ResponseEntity.ok(notifications);
-}</div>
-
-        <h2>5. Repositório de Dados Dedicado (Database-per-Service)</h2>
-        <p>
-            No microsserviço <code>notification-service</code>, foi criado o repositório Spring Data JPA <code>NotificationRepository</code>, que opera exclusivamente sobre o banco de dados dedicado <code>notificationdb</code>:
-        </p>
-        <div class="code-box">@Repository
-public interface NotificationRepository extends JpaRepository&lt;Notification, Long&gt; {
-    List&lt;Notification&gt; findAllByOrderByCreatedAtDesc();
-    List&lt;Notification&gt; findByRecipientOrderByCreatedAtDesc(String recipient);
-    List&lt;Notification&gt; findByIsReadFalseOrderByCreatedAtDesc();
-    List&lt;Notification&gt; findByRecipientAndIsReadFalseOrderByCreatedAtDesc(String recipient);
-    List&lt;Notification&gt; findByTaskIdOrderByCreatedAtDesc(Long taskId);
-    long countByIsReadFalse();
-    long countByRecipientAndIsReadFalse(String recipient);
-
-    @Modifying
-    @Query("UPDATE Notification n SET n.isRead = true, n.readAt = CURRENT_TIMESTAMP WHERE n.recipient = :recipient AND n.isRead = false")
-    int markAllAsReadByRecipient(@Param("recipient") String recipient);
-
-    @Modifying
-    @Query("UPDATE Notification n SET n.isRead = true, n.readAt = CURRENT_TIMESTAMP WHERE n.isRead = false")
-    int markAllAsRead();
-}</div>
-
-        <h2>6. Componentes Front-End Desenvolvidos</h2>
-        <p>
-            A interface de usuário em React foi ampliada com componentes visuais dedicados à interação com o microsserviço:
-        </p>
-        <ul>
-            <li><strong>Central de Notificações (<code>NotificationCenter.jsx</code>):</strong> Painel deslizante com efeito glassmorphism contendo contadores, filtros por lidas/não lidas/alertas, botões de ação em lote ("Marcar todas como lidas") e emissor de mensagens broadcast em tempo real.</li>
-            <li><strong>Sino de Notificações com Badge Reativo (<code>Navbar.jsx</code>):</strong> Exibe o contador de alertas não lidos em tempo real com animação de pulso luminoso (ping effect) quando chegam novos eventos.</li>
-            <li><strong>Monitor de Saúde dos Microsserviços (<code>ServiceStatusIndicator.jsx</code>):</strong> Exibe no cabeçalho o status de conectividade em tempo real dos serviços (<code>task-service :8080 [Online]</code> e <code>notification-service :8082 [Online]</code>).</li>
-            <li><strong>Alertas Toast em Tempo Real (<code>NotificationToast.jsx</code>):</strong> Notificações flutuantes que surgem instantaneamente quando ações de tarefas emitem eventos ao microsserviço.</li>
-            <li><strong>Modal de Notificações por Tarefa (<code>TaskNotificationModal.jsx</code>):</strong> Botão de sino em cada cartão Kanban permitindo inspecionar a rota distribuída de alertas associados àquela tarefa.</li>
-        </ul>
-
-        <h2>7. Cobertura de Testes Automatizados</h2>
-        <p>
-            Foram desenvolvidas suítes de testes unitários e de integração cobrindo os repositórios, serviços de negócio, controladores REST e clientes distribuídos de ambos os componentes:
-        </p>
-
-        <div class="highlight-box">
-            <strong>1. Suíte de Testes do <code>notification-service</code>:</strong><br/>
-            <code>BUILD SUCCESSFUL in 13s • 5 actionable tasks: 3 executed, 2 up-to-date (100% dos 7 testes passaram)</code><br/>
-            - <code>NotificationRepositoryTest</code> (Persistência, busca de não-lidas, contagem e atualização em lote)<br/>
-            - <code>NotificationServiceTest</code> (Criação de notificações, marcação de leitura, cálculo de resumo)<br/>
-            - <code>NotificationControllerTest</code> (Validação dos endpoints POST, GET, PATCH e DELETE via HTTP)<br/><br/>
-            <strong>2. Suíte de Testes do <code>task-service</code>:</strong><br/>
-            <code>BUILD SUCCESSFUL in 20s • 5 actionable tasks: 3 executed, 2 up-to-date (100% dos 11 testes passaram)</code><br/>
-            - <code>NotificationIntegrationTest</code> (Injeção de Feign Client, execução de Fallback com resiliência, integração com ciclo de tarefas)<br/>
-            - <code>TaskManagerApplicationTests</code> (Carga de contexto, rastreabilidade e histórico)<br/>
-            - <code>TaskRepositoryTest</code> &amp; <code>TaskHistoryRepositoryTest</code> (Consultas JPQL e paginação)
-        </div>
-
-        <h2>8. Atendimento Integral à Rubrica de Avaliação</h2>
-        <table class="rubric-table">
-            <thead>
-                <tr>
-                    <th>Item da Rubrica (TP3)</th>
-                    <th>Evidência Técnica Implementada</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>O aluno incorporou um novo serviço no modelo de domínio refletindo mudanças na arquitetura?</td>
-                    <td>Modelo de domínio atualizado com entidades <code>Notification</code>, tipos e integração distribuída no <code>TaskServiceImpl</code>.</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-                <tr>
-                    <td>O aluno implementou novos endpoints para acesso ao microsserviço via REST API?</td>
-                    <td>Implementados 9 novos endpoints REST em <code>/api/notifications</code> e endpoint distribuído <code>/api/tasks/{id}/notifications</code>.</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-                <tr>
-                    <td>O aluno usou Spring Boot para o desenvolvimento do microsserviço?</td>
-                    <td>Microsserviço autônomo desenvolvido com <strong>Spring Boot 3.4.3</strong> rodando na porta 8082.</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-                <tr>
-                    <td>O aluno aplicou Spring Cloud para facilitar a configuração e comunicação distribuídas?</td>
-                    <td>Utilizado <strong>Spring Cloud OpenFeign</strong> com clientes declarativos, configuração externalizada e Fallback de resiliência.</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-                <tr>
-                    <td>O aluno criou um novo repositório de dados dedicados para gerenciar dados específicos do microsserviço?</td>
-                    <td>Criado <code>NotificationRepository</code> operando sobre base isolada (<code>notificationdb</code>), garantindo o padrão <em>Database-per-Service</em>.</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-                <tr>
-                    <td>O aluno adicionou componentes na interface do usuário para interação com o novo microsserviço?</td>
-                    <td>Adicionados <code>NotificationCenter</code>, sino no navbar com contador em tempo real, toasters, e modal de alertas por tarefa.</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-                <tr>
-                    <td>O aluno expandiu a cobertura de testes para incluir o novo microsserviço e atualizações no sistema?</td>
-                    <td>Cobertura expandida com 18 testes automatizados executados com 100% de sucesso entre os dois microsserviços.</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-                <tr>
-                    <td>O aluno apresentou o código-fonte do microsserviço e atualizações correspondentes no sistema e interface de usuário?</td>
-                    <td>Código-fonte integralmente estruturado na pasta <code>TP3/</code> (task-service, notification-service, frontend).</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-                <tr>
-                    <td>O aluno apresentou a documentação arquitetural detalhada do microsserviço, integração com o sistema, e descrição dos novos endpoints da API?</td>
-                    <td>Documentação completa neste relatório técnico contendo diagramas, justificativas, mapeamento de rotas e dados de teste.</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-                <tr>
-                    <td>O aluno fez uma apresentação prática mostrando a operação integrada do novo microsserviço?</td>
-                    <td>Fluxo integrado validado de ponta a ponta com chamadas REST entre os dois serviços e interface web conectada.</td>
-                    <td><span class="badge-demonstrated">Demonstrou o item de rubrica</span></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h2>9. Guia de Execução Local</h2>
-        <div class="code-box"># 1. Executar o Microsserviço de Notificações (Spring Boot na porta 8082)
-cd TP3/notification-service
-./gradlew bootRun
-
-# 2. Executar o Microsserviço Principal de Tarefas (Spring Boot na porta 8080)
-cd ../task-service
-./gradlew bootRun
-
-# 3. Executar os Testes Automatizados de Ambos os Serviços
-cd ../notification-service && ./gradlew test
-cd ../task-service && ./gradlew test
-
-# 4. Executar a Interface do Usuário (React + Vite na porta 5173)
-cd ../frontend
-bun install
-bun run dev
-
-# 5. Acessar a aplicação integrada
-Frontend: http://localhost:5173
-API Task Service: http://localhost:8080/api/tasks
-API Notification Service: http://localhost:8082/api/notifications</div>
-
-    </div>
 </body>
 </html>

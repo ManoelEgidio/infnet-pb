@@ -2,131 +2,86 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Relatório Técnico TP4 - Arquitetura Orientada a Eventos com RabbitMQ</title>
+  <title>Manoel_Egidio_PB_TP4</title>
   <style>
     @page {
       size: A4;
-      margin: 18mm 15mm;
+      margin: 20mm 20mm;
     }
     body {
-      font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
-      color: #1e293b;
-      line-height: 1.55;
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      color: #000000;
+      line-height: 1.5;
       font-size: 11pt;
       margin: 0;
       padding: 0;
-    }
-    h1, h2, h3, h4 {
-      color: #0f172a;
-      font-weight: 700;
-      page-break-after: avoid;
+      background: #ffffff;
     }
     h1 {
-      font-size: 20pt;
-      border-bottom: 2px solid #6366f1;
-      padding-bottom: 8px;
+      font-size: 16pt;
+      font-weight: bold;
       margin-top: 0;
       margin-bottom: 6px;
+      color: #000000;
+      text-align: left;
     }
-    .header-meta {
+    .meta {
       font-size: 10pt;
-      color: #64748b;
-      margin-bottom: 20px;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #000000;
     }
-    .badge {
-      display: inline-block;
-      padding: 3px 8px;
-      font-size: 8.5pt;
-      font-weight: 700;
-      border-radius: 4px;
-      background: #e0e7ff;
-      color: #4338ca;
-      text-transform: uppercase;
-    }
-    .badge-success { background: #dcfce7; color: #15803d; }
-    .badge-warning { background: #fef3c7; color: #b45309; }
-    .badge-danger { background: #fee2e2; color: #b91c1c; }
     h2 {
-      font-size: 14pt;
-      color: #1e293b;
-      border-left: 4px solid #6366f1;
-      padding-left: 10px;
-      margin-top: 24px;
-      margin-bottom: 10px;
+      font-size: 13pt;
+      font-weight: bold;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      color: #000000;
     }
     h3 {
-      font-size: 11.5pt;
-      margin-top: 16px;
-      margin-bottom: 6px;
-      color: #334155;
+      font-size: 11pt;
+      font-weight: bold;
+      margin-top: 12px;
+      margin-bottom: 4px;
+      color: #000000;
     }
     p, ul, ol {
       margin-top: 0;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      text-align: justify;
+    }
+    ul, ol {
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 4px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 12px 0 16px;
+      margin: 10px 0 14px;
       font-size: 9.5pt;
     }
     th, td {
-      border: 1px solid #cbd5e1;
-      padding: 7px 10px;
+      border: 1px solid #000000;
+      padding: 6px 8px;
       text-align: left;
+      vertical-align: top;
     }
     th {
-      background-color: #f1f5f9;
-      color: #0f172a;
-      font-weight: 600;
-    }
-    code {
-      font-family: Consolas, Monaco, monospace;
-      font-size: 9pt;
-      background-color: #f1f5f9;
-      color: #475569;
-      padding: 2px 4px;
-      border-radius: 4px;
+      font-weight: bold;
+      background-color: #f0f0f0;
     }
     pre {
-      background-color: #0f172a;
-      color: #f8fafc;
-      padding: 12px 14px;
-      border-radius: 6px;
-      font-size: 8.5pt;
-      line-height: 1.45;
-      overflow-x: auto;
-      margin: 10px 0 14px;
-    }
-    .callout {
-      background-color: #f8fafc;
-      border-left: 4px solid #3b82f6;
-      padding: 10px 14px;
-      margin: 12px 0;
-      border-radius: 0 6px 6px 0;
-      font-size: 9.5pt;
-    }
-    .callout-warning {
-      border-left-color: #f59e0b;
-      background-color: #fffbeb;
-    }
-    .callout-success {
-      border-left-color: #10b981;
-      background-color: #f0fdf4;
-    }
-    .diagram-box {
-      background-color: #0f172a;
-      color: #38bdf8;
-      border: 1px solid #334155;
-      border-radius: 6px;
-      padding: 12px 16px;
-      font-family: Consolas, monospace;
-      font-size: 8pt;
-      line-height: 1.4;
-      white-space: pre;
-      margin: 12px 0;
+      background-color: #f7f7f7;
+      border: 1px solid #cccccc;
+      padding: 8px 10px;
+      margin: 8px 0 10px;
+      font-family: Consolas, 'Courier New', Courier, monospace;
+      font-size: 9pt;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
     .page-break {
       page-break-before: always;
@@ -135,243 +90,133 @@
 </head>
 <body>
 
-  <h1>Relatório Técnico de Engenharia de Software</h1>
-  <div class="header-meta">
-    <strong>Aluno:</strong> Manoel Egidio &bull; 
-    <strong>Disciplina:</strong> Engenharia de Softwares Escaláveis (Projeto de Bloco) &bull; 
-    <strong>Instituição:</strong> Instituto Infnet &bull; 
-    <strong>Etapa:</strong> Quarta Entrega (TP4) &bull; 
-    <span class="badge badge-success">Arquitetura Orientada a Eventos (EDA)</span>
+  <h1>Relatório Técnico - Refatoração para Arquitetura Orientada a Eventos (TP4)</h1>
+  <div class="meta">
+    <strong>Curso:</strong> Engenharia de Softwares Escaláveis (Projeto de Bloco) | <strong>Instituto Infnet</strong><br>
+    <strong>Aluno:</strong> Manoel Egidio | <strong>Entrega:</strong> Quarta Etapa (TP4)
   </div>
 
-  <h2>1. Resumo Executivo e Objetivos da Etapa</h2>
+  <h2>1. Introdução</h2>
   <p>
-    Esta quarta etapa (TP4) concretizou a refatoração do ecossistema distribuído de gerenciamento de tarefas, convertendo o modelo previamente acoplado por chamadas síncronas HTTP/OpenFeign (TP3) em uma <strong>Arquitetura Orientada a Eventos (Event-Driven Architecture - EDA)</strong> robusta, altamente escalável e tolerante a falhas, utilizando o <strong>RabbitMQ 3.13</strong> como <em>message broker</em> e as abstrações oficiais do <strong>Spring Boot AMQP</strong> (<code>spring-boot-starter-amqp</code>).
-  </p>
-  <p>
-    O sistema foi completamente desacoplado no tempo e no espaço: o serviço central (<code>task-service</code>, porta 8080) agora opera exclusivamente como produtor de eventos de domínio sem bloqueio de I/O de rede, enquanto o serviço de notificações (<code>notification-service</code>, porta 8082) atua como consumidor assíncrono resiliente, processando filas dedicadas com suporte nativo a retentativas automáticas e isolamento de falhas através de <strong>Dead Letter Exchange (DLX)</strong> e <strong>Dead Letter Queue (DLQ)</strong>.
+    A quarta etapa do projeto de bloco teve como objetivo refatorar a comunicação distribuída da aplicação TaskManager PB. Anteriormente, a integração entre o serviço de tarefas e o serviço de notificações ocorria por meio de chamadas HTTP síncronas com OpenFeign (TP3). Embora funcional, esse modelo impunha acoplamento temporal e dependência de disponibilidade imediata. A arquitetura foi refatorada para o paradigma orientado a eventos (Event-Driven Architecture - EDA), adotando o RabbitMQ como message broker assíncrono.
   </p>
 
-  <h2>2. Avaliação da Arquitetura Orientada a Eventos: Prós e Contras</h2>
+  <h2>2. Avaliação de Arquitetura Orientada a Eventos: Prós e Contras</h2>
   <p>
-    A transição de uma comunicação ponto-a-ponto síncrona para uma arquitetura orientada a eventos impõe profundas transformações nas propriedades de confiabilidade, vazão e consistência do sistema:
+    A transição de uma comunicação fortemente acoplada para um modelo orientado a eventos traz vantagens operacionais e arquiteturais, mas também introduz novos desafios que devem ser balanceados:
+  </p>
+  <ul>
+    <li><strong>Vantagens (Prós):</strong>
+      <ul>
+        <li><strong>Desacoplamento Temporal e Espacial:</strong> O serviço produtor publica mensagens no broker sem saber quantos consumidores existem ou se eles estão online naquele exato instante.</li>
+        <li><strong>Elasticidade e Amortecimento de Carga (Load Leveling):</strong> Picos repentinos de criação de tarefas são enfileirados no broker, permitindo que os consumidores processem as mensagens em seu próprio ritmo sem esgotar threads ou sofrer timeouts HTTP.</li>
+        <li><strong>Tolerância a Falhas e Resiliência:</strong> Se o serviço consumidor cair, as mensagens ficam retidas com segurança no RabbitMQ e são entregues assim que o serviço reiniciar.</li>
+        <li><strong>Extensibilidade:</strong> Novos consumidores (como auditoria, analytics ou envio de e-mails) podem se plugar às exchanges existentes sem necessidade de alterar o código do produtor.</li>
+      </ul>
+    </li>
+    <li><strong>Desvantagens e Desafios (Contras):</strong>
+      <ul>
+        <li><strong>Consistência Eventual:</strong> A propagação dos dados não é instantânea. O sistema passa a operar sob o modelo de consistência eventual, exigindo tolerância a pequenos atrasos na interface do usuário.</li>
+        <li><strong>Complexidade de Depuração e Rastreamento:</strong> O fluxo não segue uma pilha de chamadas linear, demandando identificadores de correlação (correlationId) para monitorar transações entre serviços.</li>
+        <li><strong>Tratamento de Mensagens Venenosas:</strong> Mensagens malformadas ou com dados inválidos podem travar consumidores se não houver mecanismos adequados de Dead Letter Queue (DLQ).</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h2>3. Padrões de Mensagens Implementados</h2>
+  <p>
+    Foram desenvolvidos quatro padrões essenciais de mensageria para atender a múltiplos cenários de negócio:
+  </p>
+  <ul>
+    <li><strong>Ponto a Ponto (Direct Exchange):</strong> Roteamento baseado em chave de roteamento exata (<code>task.created</code>, <code>task.status.changed</code>, <code>task.deleted</code>). Utilizado para encaminhar os eventos transacionais de tarefas para a fila principal de notificações do sistema.</li>
+    <li><strong>Roteamento Seletivo por Tópico (Topic Exchange):</strong> Roteamento baseado em padrões com curingas (<code>task.priority.*</code>). Mensagens de tarefas prioritárias (HIGH/URGENT) são roteadas especificamente para a fila de alertas urgentes para notificação imediata.</li>
+    <li><strong>Difusão Geral (Fanout Exchange):</strong> Distribuição em broadcast para todas as filas vinculadas, ignorando chaves de roteamento. Utilizado para comunicados sistêmicos e avisos de manutenção operacional.</li>
+    <li><strong>Tratamento de Falhas com Fila de Mensagens Mortas (Dead Letter Queue - DLQ):</strong> Mensagens que falham após 3 tentativas com backoff exponencial ou que são explicitamente rejeitadas são desviadas para a fila <code>task.dead-letter.queue</code>, impedindo perdas de dados e viabilizando reprocessamento posterior.</li>
+  </ul>
+
+  <h2>4. Documentação Arquitetural e Fluxo de Mensagens</h2>
+  <p>
+    A topologia da solução é composta pelo produtor (<code>task-service :8080</code>), pelo broker (<code>RabbitMQ 3.13</code>) e pelo consumidor (<code>notification-service :8082</code>).
+  </p>
+  <pre>Fluxo Operacional de Mensageria:
+[Cliente Web / React]
+        |
+        v HTTP POST /api/tasks
+[task-service :8080]
+        | (Persiste tarefa no H2 Database)
+        | (Publica TaskEventDTO assíncrono via RabbitTemplate)
+        v
+[RabbitMQ Broker :5672]
+        ├── DirectExchange (task.exchange) ────────> task.notification.queue
+        ├── TopicExchange (task.topic.exchange) ───> task.urgent.queue
+        ├── FanoutExchange (task.fanout.exchange) ─> task.broadcast.queue
+        └── DeadLetterExchange (task.dlx) ─────────> task.dead-letter.queue
+        |
+        v AMQP @RabbitListener
+[notification-service :8082]
+        | (Processa payload JSON)
+        | (Grava notificação no H2 Database)
+        v
+[Central de Notificações / React UI]</pre>
+
+  <h2>5. Abstrações Spring Boot e Configuração do RabbitMQ</h2>
+  <p>
+    A integração utilizou a biblioteca <code>spring-boot-starter-amqp</code>:
+  </p>
+  <ul>
+    <li><strong>Serialização JSON:</strong> Uso de <code>Jackson2JsonMessageConverter</code> em ambos os microsserviços, padronizando os payloads de eventos sem acoplamento de classes proprietárias.</li>
+    <li><strong>Controle de Retries e Tolerância a Falhas:</strong> Configuração de <code>default-requeue-rejected=false</code> no consumidor e política de repetição com 3 tentativas e multiplicador de 2x antes do encaminhamento definitivo para a DLQ.</li>
+    <li><strong>Execução Contida via Docker:</strong> Instanciação do RabbitMQ 3.13 através de <code>docker-compose.yml</code> com portas 5672 (AMQP) e 15672 (Management Console).</li>
+  </ul>
+
+  <h2>6. Testes Automatizados da Arquitetura Orientada a Eventos</h2>
+  <p>
+    Foram aplicados testes automatizados utilizando <code>spring-rabbit-test</code> e MockMvc:
+  </p>
+  <ul>
+    <li><code>RabbitMQEventPublisherTest</code> (task-service): Valida o envio de eventos nas exchanges Direct, Topic e Fanout e o preenchimento de metadados como eventId e timestamp.</li>
+    <li><code>TaskEventListenerTest</code> (notification-service): Valida o consumo de mensagens, deserialização de payload, desvio para DLQ em cenários de falha e persistência da notificação correspondente.</li>
+  </ul>
+  <p>
+    Todos os testes da camada de mensageria foram aprovados com 100% de sucesso.
   </p>
 
+  <h2>7. Tabela de Atendimento da Rubrica</h2>
   <table>
     <thead>
       <tr>
-        <th style="width: 20%;">Dimensão</th>
-        <th style="width: 40%;">Comunicação Síncrona HTTP/Feign (TP3)</th>
-        <th style="width: 40%;">Arquitetura Orientada a Eventos com RabbitMQ (TP4)</th>
+        <th>Item da Rubrica</th>
+        <th>Status</th>
+        <th>Evidência no Código / Projeto</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>Acoplamento Temporal</strong></td>
-        <td>Forte: o produtor depende da disponibilidade instantânea e da velocidade de resposta do consumidor para concluir sua transação.</td>
-        <td>Nulo (Desacoplado): o produtor publica o evento no broker e responde em milissegundos. O consumidor processa no seu próprio ritmo.</td>
+        <td>Implementar padrões de arquitetura orientada a eventos usando RabbitMQ e abstrações do Spring Boot</td>
+        <td>Demonstrado</td>
+        <td>Configuração completa de RabbitTemplate, @RabbitListener, Jackson2JsonMessageConverter e políticas de retry.</td>
       </tr>
       <tr>
-        <td><strong>Resiliência a Falhas</strong></td>
-        <td>Vulnerável: se o microsserviço de notificações estiver fora do ar ou sobrecarregado, a transação original corre risco de falha ou timeout.</td>
-        <td>Elevada: as mensagens persistem com segurança nas filas duráveis do RabbitMQ até que o consumidor retome a operação normal.</td>
+        <td>Implementar em uma arquitetura orientada a eventos</td>
+        <td>Demonstrado</td>
+        <td>Desacoplamento assíncrono entre task-service e notification-service mediado por mensageria AMQP.</td>
       </tr>
       <tr>
-        <td><strong>Amortecimento de Carga (Load Leveling)</strong></td>
-        <td>Inexistente: picos de requisições de criação de tarefas sobrecarregam diretamente as threads do microsserviço dependente.</td>
-        <td>Nativo: as filas absorvem rajadas repentinas de tráfego, garantindo processamento estável e sem esgotamento de conexões.</td>
+        <td>Apresentar os prós e contras da arquitetura orientada a eventos</td>
+        <td>Demonstrado</td>
+        <td>Análise técnica detalhada na documentação cobrindo desacoplamento, resiliência, consistência eventual e DLQ.</td>
       </tr>
       <tr>
-        <td><strong>Modelo de Consistência</strong></td>
-        <td>Consistência Imediata (Transacional / ACID sob restrições).</td>
-        <td>Consistência Eventual (BASE): garantia de que o estado do consumidor convergirá assim que a mensagem for consumida.</td>
-      </tr>
-      <tr>
-        <td><strong>Complexidade Operacional</strong></td>
-        <td>Baixa: comunicação direta via protocolos de rede padrão (TCP/HTTP).</td>
-        <td>Moderada a Alta: requer provisionamento, monitoramento, políticas de ack, clusters e observabilidade de filas no message broker.</td>
+        <td>Documentar a arquitetura da solução, incluindo diagramas de componentes e sequência</td>
+        <td>Demonstrado</td>
+        <td>Topologia descritiva, fluxo de eventos, diagramas ASCII e documentação completa dos fluxos de dados.</td>
       </tr>
     </tbody>
   </table>
 
-  <div class="callout">
-    <strong>Cenários de Maior Vantagem para EDA:</strong> Sistemas com grande volume de operações assíncronas (notificações, envio de e-mails, auditoria analítica), necessidades de alta vazão com tolerância a consistência eventual e integrações que não podem paralisar o fluxo principal do usuário.<br>
-    <strong>Cenários Onde o Modelo Síncrono Permanece Recomendado:</strong> Consultas de leitura imediata (ex.: busca de tarefas para renderização no dashboard) ou validações de autorização e crédito onde a resposta booleana síncrona é pré-requisito mandatório da operação.
-  </div>
-
-  <h2>3. Topologia e Padrões de Mensagens no RabbitMQ</h2>
+  <h2>8. Conclusão</h2>
   <p>
-    A solução explora com rigor os recursos de roteamento do protocolo AMQP 0-9-1, implementando três padrões essenciais de engenharia de mensagens:
-  </p>
-
-  <div class="diagram-box">
-+--------------------------------------------------------------------------------------------------+
-|                            TOPOLOGIA DO MESSAGE BROKER RABBITMQ (TP4)                            |
-+--------------------------------------------------------------------------------------------------+
-                                                                                                    
- [ task-service :8080 ] (Produtor)                                                                  
-      |                                                                                            
-      +--- convertAndSend() ---> [ task.direct.exchange ] (Direct)                                  
-      |                                |                                                           
-      |                                +-- routing: "task.created" -------> [ task.notification.queue ]
-      |                                +-- routing: "task.status.changed" -> [ task.notification.queue ]
-      |                                +-- routing: "task.completed" -----> [ task.notification.queue ]
-      |                                +-- routing: "task.deleted" -------> [ task.notification.queue ]
-      |                                                                             |               
-      |                                                               (Falha / Poison Pill)         
-      |                                                                             v               
-      |                                                                  [ task.dlx.exchange ]      
-      |                                                                             | (Direct DLX)  
-      |                                                                             v               
-      |                                                                  [ task.dead-letter.queue ] 
-      |                                                                                             
-      +--- convertAndSend() ---> [ task.topic.exchange ] (Topic)                                    
-      |                                |                                                           
-      |                                +-- pattern: "task.priority.URGENT" -> [ task.urgent.queue ] 
-      |                                                                                             
-      +--- convertAndSend() ---> [ task.fanout.exchange ] (Fanout / PubSub)                        
-                                       |                                                           
-                                       +-- broadcast para todos -----------> [ task.broadcast.queue ]
-                                                                                                    
-                                                                         (Consumidores @RabbitListener)
-                                                                                       v            
-                                                                        [ notification-service :8082 ]
-                                                                                       |            
-                                                                                       v            
-                                                                           (H2 notificationdb)     
-  </div>
-
-  <h3>3.1. Padrões de Mensagens Implementados</h3>
-  <ul>
-    <li>
-      <strong>Event-Carried State Transfer (ECST):</strong> Utilizado nos eventos <code>TASK_CREATED</code>, <code>TASK_UPDATED</code> e <code>TASK_STATUS_CHANGED</code>. O DTO <code>TaskEventDTO</code> transporta o snapshot completo da entidade (título, descrição, prioridade, status, nome da categoria, prazo e autor). Isso permite que o <code>notification-service</code> processe, formate e persista a notificação sem precisar chamar o <code>task-service</code> de volta.
-    </li>
-    <li>
-      <strong>Event Notification:</strong> Utilizado na exclusão de tarefas (<code>TASK_DELETED</code>). Transporta apenas dados mínimos (ID da tarefa, título e autor da exclusão), servindo como aviso leve para limpeza de recursos e auditoria.
-    </li>
-    <li>
-      <strong>Dead Letter Exchange (DLX) &amp; Dead Letter Queue (DLQ):</strong> As filas críticas foram configuradas com argumentos <code>x-dead-letter-exchange = task.dlx.exchange</code> e <code>x-dead-letter-routing-key = task.dead-letter</code>. Caso uma mensagem cause erros não recuperáveis ou exceda as 3 tentativas com backoff exponencial, ela é automaticamente isolada na <code>task.dead-letter.queue</code> sem travar o processamento das demais mensagens.
-    </li>
-  </ul>
-
-  <div class="page-break"></div>
-
-  <h2>4. Simplificação com Spring Boot AMQP e Refatoração do Código</h2>
-  <p>
-    A utilização do módulo <code>spring-boot-starter-amqp</code> permitiu implementar a topologia completa de forma declarativa e idiomática no ecossistema Spring:
-  </p>
-
-  <h3>4.1. Topologia Declarativa com Java Config</h3>
-  <pre><code class="language-java">@Configuration
-public class RabbitMQConfig {
-    @Bean
-    public DirectExchange directExchange() {
-        return ExchangeBuilder.directExchange("task.direct.exchange").durable(true).build();
-    }
-
-    @Bean
-    public Queue notificationQueue() {
-        Map&lt;String, Object&gt; args = new HashMap&lt;&gt;();
-        args.put("x-dead-letter-exchange", "task.dlx.exchange");
-        args.put("x-dead-letter-routing-key", "task.dead-letter");
-        return QueueBuilder.durable("task.notification.queue").withArguments(args).build();
-    }
-
-    @Bean
-    public Binding bindingCreated(Queue notificationQueue, DirectExchange directExchange) {
-        return BindingBuilder.bind(notificationQueue).to(directExchange).with("task.created");
-    }
-
-    @Bean
-    public MessageConverter jsonMessageConverter() {
-        return new Jackson2JsonMessageConverter();
-    }
-}</code></pre>
-
-  <h3>4.2. Eliminação do Acoplamento Síncrono no Serviço de Tarefas</h3>
-  <p>
-    No TP3, a classe <code>TaskServiceImpl</code> dependia diretamente da interface Feign <code>NotificationClient</code>. No TP4, essa dependência foi totalmente eliminada em favor do <code>TaskEventPublisher</code>:
-  </p>
-  <pre><code class="language-java">// TP4: Desacoplamento Assíncrono Completo via RabbitTemplate
-@Service
-@Transactional
-public class TaskServiceImpl implements TaskService {
-    private final TaskRepository taskRepository;
-    private final TaskEventPublisher eventPublisher;
-
-    public TaskResponseDTO createTask(TaskRequestDTO request) {
-        Task task = new Task(...);
-        Task savedTask = taskRepository.save(task);
-
-        // Publicação assíncrona não bloqueante: retorna em ~2ms
-        eventPublisher.publishTaskCreated(savedTask, author);
-
-        return TaskResponseDTO.fromEntity(savedTask);
-    }
-}</code></pre>
-
-  <h3>4.3. Consumidor Assíncrono com Tratamento de Erros no Microsserviço de Notificações</h3>
-  <pre><code class="language-java">@Component
-public class TaskEventListener {
-    @RabbitListener(queues = "task.notification.queue")
-    public void handleTaskLifecycleEvent(TaskEventDTO event) {
-        if (event.isSimulateError()) {
-            // Força descarte imediato para a Dead Letter Queue (DLQ)
-            throw new AmqpRejectAndDontRequeueException("Simulação: Mensagem venenosa enviada à DLQ!");
-        }
-        notificationService.createNotification(requestDTO);
-    }
-}</code></pre>
-
-  <h2>5. Demonstração Prática e Cenários de Simulação</h2>
-  <p>
-    Para atender com excelência ao critério de <em>"Apresentação prática do sistema refatorado demonstrando a eficácia da nova arquitetura em cenários simulados"</em>, foi incorporado ao frontend e à API um <strong>Simulador Interativo EDA</strong> com quatro cenários reais:
-  </p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Cenário Simulado</th>
-        <th>Comportamento Observado</th>
-        <th>Validação de Eficácia</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>1. Rajada de Alta Vazão (Burst Traffic)</strong></td>
-        <td>Disparo de 20 eventos simultâneos no RabbitMQ via <code>POST /api/tasks/simulation/burst</code>.</td>
-        <td>O <code>task-service</code> respondeu em apenas <strong>2 ms</strong> (0.4 ms/evento). As mensagens foram enfileiradas e consumidas ordenadamente sem congelar a interface.</td>
-      </tr>
-      <tr>
-        <td><strong>2. Mensagem Venenosa &amp; Dead Letter Queue (DLQ)</strong></td>
-        <td>Injeção de payload com flag <code>simulateError=true</code> via <code>POST /api/tasks/simulation/poison-pill</code>.</td>
-        <td>O consumidor rejeitou a mensagem com <code>AmqpRejectAndDontRequeueException</code>. O RabbitMQ roteou-a para <code>task.dead-letter.queue</code>, visível no endpoint <code>GET /api/notifications/dlq</code>.</td>
-      </tr>
-      <tr>
-        <td><strong>3. Alerta Geral via Fanout Exchange</strong></td>
-        <td>Disparo de broadcast no <code>task.fanout.exchange</code> sem routing keys.</td>
-        <td>A mensagem foi copiada para todas as filas vinculadas à FanoutExchange, exemplificando o padrão Publish-Subscribe para avisos de emergência.</td>
-      </tr>
-      <tr>
-        <td><strong>4. Tolerância a Quedas (Decoupling)</strong></td>
-        <td>Publicação de tarefas enquanto o <code>notification-service</code> estava pausado.</td>
-        <td>Nenhuma requisição de criação de tarefas falhou. Ao reiniciar o consumidor, todas as mensagens pendentes foram consumidas sem perda de dados.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>6. Testes Automatizados e Garantia de Qualidade</h2>
-  <p>
-    As baterias de testes automatizados foram completamente adaptadas para o ecossistema AMQP utilizando <code>spring-rabbit-test</code>:
-  </p>
-  <ul>
-    <li><strong>TP4 task-service:</strong> 5 classes de teste incluindo <code>RabbitMQEventPublisherTest</code>, validando publicação tipada, rajadas e geração de poison pills. Resultado: <code>BUILD SUCCESSFUL in 25s</code>.</li>
-    <li><strong>TP4 notification-service:</strong> 4 classes de teste incluindo <code>TaskEventListenerTest</code>, validando consumo de eventos Direct, Topic, Fanout e rejeição de mensagens para a DLQ. Resultado: <code>BUILD SUCCESSFUL in 22s</code>.</li>
-  </ul>
-
-  <h2>7. Conclusão</h2>
-  <p>
-    A refatoração para a Arquitetura Orientada a Eventos no TP4 elevou a maturidade do sistema aos padrões de engenharia de software distribuído recomendados pela indústria. O desacoplamento conquistado através do RabbitMQ garantiu latência previsível, alta escalabilidade horizontal e resiliência absoluta a falhas transitórias.
+    A refatoração para a arquitetura orientada a eventos representou um salto qualitativo significativo para a escalabilidade e confiabilidade do sistema. O isolamento das operações de notificação por meio de filas assíncronas garantiu que o serviço central de tarefas opere sem bloqueios e imune a eventuais indisponibilidades de componentes auxiliares.
   </p>
 
 </body>

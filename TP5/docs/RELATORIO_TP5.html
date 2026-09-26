@@ -2,500 +2,244 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Relatório Técnico TP5 - Implantação e Manutenção em Produção</title>
+  <title>Manoel_Egidio_PB_TP5</title>
   <style>
     @page {
       size: A4;
-      margin: 16mm 14mm;
+      margin: 20mm 20mm;
     }
     body {
-      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
-      color: #1e293b;
+      font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+      color: #000000;
       line-height: 1.5;
-      font-size: 10.5pt;
+      font-size: 11pt;
       margin: 0;
       padding: 0;
-    }
-    h1, h2, h3, h4 {
-      color: #0f172a;
-      font-weight: 700;
-      page-break-after: avoid;
+      background: #ffffff;
     }
     h1 {
-      font-size: 18pt;
-      border-bottom: 2px solid #0284c7;
-      padding-bottom: 6px;
+      font-size: 16pt;
+      font-weight: bold;
       margin-top: 0;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      color: #000000;
+      text-align: left;
     }
-    .header-meta {
-      font-size: 9.5pt;
-      color: #64748b;
+    .meta {
+      font-size: 10pt;
       margin-bottom: 16px;
-      border-bottom: 1px solid #e2e8f0;
-      padding-bottom: 10px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid #000000;
     }
-    .badge {
-      display: inline-block;
-      padding: 2px 7px;
-      font-size: 8pt;
-      font-weight: 700;
-      border-radius: 4px;
-      background: #e0f2fe;
-      color: #0369a1;
-      text-transform: uppercase;
-    }
-    .badge-success { background: #dcfce7; color: #15803d; }
-    .badge-purple { background: #f3e8ff; color: #7e22ce; }
-    .badge-warning { background: #fef3c7; color: #b45309; }
     h2 {
       font-size: 13pt;
-      color: #0f172a;
-      border-left: 4px solid #0284c7;
-      padding-left: 8px;
-      margin-top: 20px;
-      margin-bottom: 8px;
+      font-weight: bold;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      color: #000000;
     }
     h3 {
       font-size: 11pt;
-      margin-top: 14px;
+      font-weight: bold;
+      margin-top: 12px;
       margin-bottom: 4px;
-      color: #334155;
+      color: #000000;
     }
     p, ul, ol {
       margin-top: 0;
       margin-bottom: 8px;
+      text-align: justify;
+    }
+    ul, ol {
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 4px;
     }
     table {
       width: 100%;
       border-collapse: collapse;
       margin: 10px 0 14px;
-      font-size: 9pt;
+      font-size: 9.5pt;
     }
     th, td {
-      border: 1px solid #cbd5e1;
-      padding: 6px 9px;
+      border: 1px solid #000000;
+      padding: 6px 8px;
       text-align: left;
+      vertical-align: top;
     }
     th {
-      background-color: #f8fafc;
-      color: #0f172a;
-      font-weight: 600;
-    }
-    code {
-      font-family: Consolas, Monaco, 'Courier New', monospace;
-      font-size: 8.5pt;
-      background-color: #f1f5f9;
-      color: #334155;
-      padding: 1px 4px;
-      border-radius: 3px;
+      font-weight: bold;
+      background-color: #f0f0f0;
     }
     pre {
-      background-color: #0f172a;
-      color: #f8fafc;
-      padding: 10px 12px;
-      border-radius: 6px;
-      font-size: 8pt;
-      line-height: 1.4;
-      overflow-x: auto;
-      margin: 8px 0 12px;
-    }
-    .callout {
-      border-left: 4px solid #0284c7;
-      background-color: #f0f9ff;
-      padding: 8px 12px;
-      border-radius: 0 6px 6px 0;
-      margin: 10px 0;
-      font-size: 9.5pt;
+      background-color: #f7f7f7;
+      border: 1px solid #cccccc;
+      padding: 8px 10px;
+      margin: 8px 0 10px;
+      font-family: Consolas, 'Courier New', Courier, monospace;
+      font-size: 9pt;
+      line-height: 1.35;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
     .page-break {
       page-break-before: always;
-    }
-    .rubric-box {
-      border: 1px solid #0284c7;
-      background: #f0f9ff;
-      padding: 8px 12px;
-      border-radius: 6px;
-      margin-bottom: 12px;
-      font-size: 9pt;
     }
   </style>
 </head>
 <body>
 
-  <h1>Relatório de Implantação e Manutenção em Produção</h1>
-  <div class="header-meta">
-    <strong>Projeto de Bloco:</strong> Engenharia de Softwares Escaláveis | <strong>Etapa Final:</strong> TP5<br>
-    <strong>Aluno:</strong> Manoel Egidio | <strong>Instituição:</strong> Instituto Infnet | <strong>Ano Letivo:</strong> 2026<br>
-    <strong>Status de Entrega:</strong> <span class="badge badge-success">Demonstrou Todos os Itens da Rubrica (100%)</span>
+  <h1>Relatório Técnico - Implantação e Manutenção em Produção (TP5)</h1>
+  <div class="meta">
+    <strong>Curso:</strong> Engenharia de Softwares Escaláveis (Projeto de Bloco) | <strong>Instituto Infnet</strong><br>
+    <strong>Aluno:</strong> Manoel Egidio | <strong>Entrega:</strong> Quinta Etapa (TP5)
   </div>
 
-  <div class="rubric-box">
-    <strong>Resumo de Atendimento dos 9 Critérios da Rubrica do TP5:</strong>
-    Todos os 9 critérios estabelecidos na rubrica de avaliação foram integralmente desenvolvidos, testados e demonstrados no sistema:
-    conteinerização multi-stage Docker, orquestração Kubernetes com HPA, agregação de logs com Correlation ID, rastreamento distribuído (Zipkin/Brave), métricas abertas (Prometheus/Actuator), versionamento e separação de perfis, automação CI/CD via GitHub Actions, cobertura abrangente de testes e painel operacional frontend.
-  </div>
-
-  <h2>1. Introdução e Visão Geral da Arquitetura em Produção</h2>
+  <h2>1. Introdução</h2>
   <p>
-    Esta etapa consolida a evolução arquitetural realizada ao longo do semestre no sistema <strong>TaskManager PB</strong>. A aplicação, que teve sua modularização iniciada com monólito e microsserviços síncronos (TP1-TP3) e foi transformada em uma arquitetura orientada a eventos assíncrona com RabbitMQ (TP4), é agora totalmente preparada para operação em escala no ambiente de produção (TP5).
+    Esta etapa representa a fase de transição da aplicação TaskManager PB para a operação em ambiente de produção simulado. O foco central consistiu em conferir estabilidade, escalabilidade, segurança e manutenibilidade ao ecossistema distribuído através de conteinerização com Docker, orquestração elástica com Kubernetes, monitoramento tridimensional com Spring Boot Actuator, Prometheus e Zipkin, e automação do ciclo de vida com GitHub Actions.
   </p>
+
+  <h2>2. Conteinerização com Docker</h2>
   <p>
-    A solução adota os paradigmas fundamentais de sistemas <em>Cloud-Native</em> modernos:
+    Todos os componentes do sistema foram conteinerizados adotando a estratégia de compilação multiestágio (Multi-Stage Builds), que separa o ambiente pesado de compilação da imagem final mínima executada em produção:
   </p>
   <ul>
-    <li><strong>Imutabilidade de Infraestrutura:</strong> Conteinerização com imagens Docker mínimas geradas via <em>Multi-Stage Build</em>, isolando ambiente de compilação do runtime de produção.</li>
-    <li><strong>Orquestração e Alta Disponibilidade:</strong> Especificação de topologia completa em Kubernetes (K8s), com <em>Rolling Updates</em> sem indisponibilidade (<em>Zero Downtime</em>), auto-escalonamento horizontal (<em>Horizontal Pod Autoscaler - HPA</em>) baseado em demanda de CPU, e isolamento em namespace dedicado (<code>taskmanager-prod</code>).</li>
-    <li><strong>Observabilidade Tridimensional:</strong> Implementação dos três pilares da observabilidade:
-      <strong>Logs Estruturados</strong> com identificadores de correlação (<code>traceId</code> e <code>spanId</code>);
-      <strong>Métricas</strong> expostas no formato aberto Prometheus (Spring Boot Actuator);
-      <strong>Rastreamento Distribuído (Distributed Tracing)</strong> de ponta a ponta com Micrometer Tracing Brave e OpenZipkin.</li>
-    <li><strong>Automação CI/CD:</strong> Pipeline automatizado via GitHub Actions executando análise estática, suítes de testes, build das imagens Docker e validação estrita de esquemas Kubernetes com Kubeconform e Kind.</li>
+    <li><strong>task-service e notification-service:</strong> Estágio 1 construtor baseado em <code>eclipse-temurin:21-jdk-alpine</code> compilando via Gradle; Estágio 2 de runtime enxuto baseado em <code>eclipse-temurin:21-jre-alpine</code>. A execução é configurada sob usuário não-privilegiado (<code>appuser</code> / <code>appgroup</code>) para mitigação de riscos de segurança. Os contêineres possuem verificação de integridade nativa (<code>HEALTHCHECK</code>) consultando a liveness probe do Spring Boot Actuator (<code>/actuator/health/liveness</code>).</li>
+    <li><strong>frontend:</strong> Estágio 1 construtor com <code>oven/bun:alpine</code> para compilação do bundle estático (Vite); Estágio 2 com <code>nginx:alpine</code> servindo o Single Page Application com compressão Gzip e reverse proxy para os microsserviços.</li>
+    <li><strong>Orquestração com Docker Compose:</strong> O arquivo <code>docker-compose.prod.yml</code> orquestra todos os serviços (task-service, notification-service, frontend, rabbitmq, zipkin e prometheus) em rede isolada <code>taskmanager-network</code> com ordenação de inicialização baseada na integridade dos serviços.</li>
   </ul>
 
-  <h2>2. Conteinerização com Docker (Item 1 e 7 da Rubrica)</h2>
+  <h2>3. Orquestração e Escalabilidade com Kubernetes</h2>
   <p>
-    Para garantir portabilidade, segurança e eficiência de recursos, todos os componentes do sistema foram conteinerizados utilizando a técnica de <strong>Multi-Stage Builds</strong>.
-  </p>
-
-  <h3>2.1 Microsserviços Backend (Java 21 / Spring Boot 3.4)</h3>
-  <p>
-    Os Dockerfiles do <code>task-service</code> e <code>notification-service</code> empregam um estágio construtor baseado no <code>eclipse-temurin:21-jdk-alpine</code> para compilação e empacotamento com Gradle, e um estágio final de produção enxuto com <code>eclipse-temurin:21-jre-alpine</code>.
-  </p>
-  <p>
-    <strong>Diretrizes de Segurança e Otimização Aplicadas:</strong>
+    Para gerenciar o ciclo de vida dos contêineres em produção, foi desenvolvida a especificação declarativa completa no diretório <code>TP5/k8s/</code>:
   </p>
   <ul>
-    <li><strong>Princípio do Menor Privilégio:</strong> Execução sob usuário não-root (<code>appuser</code> / <code>appgroup</code>), eliminando riscos de escalada de privilégios.</li>
-    <li><strong>Healthcheck Nativo do Container:</strong> Sondagem periódica ao endpoint de liveness do Spring Boot Actuator (<code>/actuator/health/liveness</code>) para supervisão pelo daemon do Docker.</li>
-    <li><strong>Otimização de JVM em Containers:</strong> Definição de flags de memória adequadas a contêineres (<code>-Xms256m -Xmx512m -XX:+UseG1GC</code>).</li>
+    <li><code>00-namespace.yaml</code>: Cria o namespace isolado <code>taskmanager-prod</code> para separação lógica e controle de governança.</li>
+    <li><code>01-configmap.yaml</code> e <code>02-secrets.yaml</code>: Segregação entre configurações públicas e credenciais criptografadas em Base64 do broker RabbitMQ.</li>
+    <li><code>10-rabbitmq.yaml</code>, <code>11-zipkin.yaml</code> e <code>12-prometheus.yaml</code>: Deployments e Services ClusterIP para suporte à mensageria, rastreamento e coleta de métricas.</li>
+    <li><code>20-task-service.yaml</code> e <code>21-notification-service.yaml</code>: Deployments com 2 réplicas mínimas, estratégia <code>RollingUpdate</code> (maxSurge=1, maxUnavailable=0 para deploy sem indisponibilidade), cotas de recursos (requests/limits de CPU e memória) e probes de liveness e readiness.</li>
+    <li><strong>Horizontal Pod Autoscaler (HPA):</strong> Configurado para ambos os microsserviços com auto-escalonamento de 2 a 10 réplicas baseado em utilização de CPU acima de 70%.</li>
+    <li><code>30-frontend.yaml</code> e <code>40-ingress.yaml</code>: Deployment da interface com Service NodePort (porta 30080) e Ingress unificado para roteamento de tráfego.</li>
   </ul>
 
-  <pre># Exemplo do Dockerfile Multi-Stage (task-service)
-FROM eclipse-temurin:21-jdk-alpine AS builder
-WORKDIR /workspace
-COPY gradlew . && COPY gradle gradle && COPY build.gradle settings.gradle ./
-RUN chmod +x gradlew && ./gradlew dependencies --no-daemon || true
-COPY src src
-RUN ./gradlew bootJar -x test --no-daemon
-
-FROM eclipse-temurin:21-jre-alpine
-WORKDIR /app
-RUN addgroup -S appgroup && adduser -S appuser -G appgroup
-USER appuser
-COPY --from=builder /workspace/build/libs/*.jar app.jar
-EXPOSE 8080
-HEALTHCHECK --interval=30s --timeout=5s --start-period=40s \
-  CMD wget --quiet --tries=1 --spider http://localhost:8080/actuator/health/liveness || exit 1
-ENV SPRING_PROFILES_ACTIVE=prod
-ENTRYPOINT ["sh", "-c", "exec java $JAVA_OPTS -jar app.jar"]</pre>
-
-  <h3>2.2 Frontend SPA (React + Bun + Nginx Alpine)</h3>
+  <h2>4. Observabilidade, Agregação de Logs e Rastreamento Distribuído</h2>
   <p>
-    O frontend utiliza <code>oven/bun:alpine</code> para instalação ultra-rápida de dependências e compilação do bundle estático (Vite), e <code>nginx:alpine</code> para servir os arquivos estáticos com suporte a compressão Gzip, roteamento SPA (<code>try_files $uri /index.html</code>) e <em>Reverse Proxy</em> para os microsserviços.
+    A solução contempla os três pilares da observabilidade para monitoramento contínuo:
+  </p>
+  <ul>
+    <li><strong>Probes de Ciclo de Vida:</strong> Configuração do Spring Boot Actuator expondo <code>/actuator/health/liveness</code> (verificação de saúde para reinicialização do pod) e <code>/actuator/health/readiness</code> (verificação de prontidão para recepção de requisições de clientes).</li>
+    <li><strong>Métricas Abertas (Prometheus):</strong> Exportação de métricas padronizadas no endpoint <code>/actuator/prometheus</code>, coletadas periodicamente pelo Prometheus Server (porta 9090).</li>
+    <li><strong>Rastreamento de Transações (Distributed Tracing):</strong> Instrumentação com Micrometer Tracing Brave e envio de spans ao OpenZipkin (porta 9411). Cada requisição HTTP gera um <code>traceId</code> exclusivo que é propagado nos metadados AMQP das mensagens publicadas no RabbitMQ, viabilizando o rastreamento da jornada ponta a ponta da transação no console do Zipkin.</li>
+    <li><strong>Logs Estruturados com Correlação:</strong> O formato de log do Spring Boot inclui o identificador do serviço, o traceId e o spanId: <code>%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]</code>.</li>
+  </ul>
+
+  <h2>5. Gestão de Configuração e Versionamento</h2>
+  <p>
+    A separação entre ambientes de desenvolvimento e produção é garantida por perfis Spring:
+  </p>
+  <ul>
+    <li><code>application.properties</code>: Perfil padrão de desenvolvimento com H2 local e fallback para RabbitMQ local.</li>
+    <li><code>application-prod.properties</code>: Perfil de produção ativado por <code>SPRING_PROFILES_ACTIVE=prod</code>, consumindo variáveis dinâmicas injetadas pelo Kubernetes ConfigMap e Secret (<code>RABBITMQ_HOST</code>, <code>RABBITMQ_PORT</code>, <code>ZIPKIN_ENDPOINT</code>).</li>
+    <li><strong>Controle de Versão:</strong> O repositório Git mantém histórico claro de mudanças, com arquivos <code>.gitignore</code> configurados para impedir o commit de artefatos de build, binários e relatórios intermediários.</li>
+  </ul>
+
+  <h2>6. Automação CI/CD com GitHub Actions</h2>
+  <p>
+    A automação do fluxo de integração e entrega contínua foi implementada no workflow <code>.github/workflows/ci-cd-tp5.yml</code>, estruturado em quatro etapas:
+  </p>
+  <ul>
+    <li><strong>Backend CI:</strong> Matriz paralela para task-service e notification-service executando testes automatizados, build com Gradle (bootJar) e publicação de relatórios JUnit.</li>
+    <li><strong>Frontend CI:</strong> Instalação limpa com Bun, verificação estática com Oxlint e compilação do bundle de produção com Vite.</li>
+    <li><strong>Docker Build:</strong> Compilação das imagens multi-stage dos microsserviços e frontend.</li>
+    <li><strong>K8s Validation & CD Simulation:</strong> Validação de sintaxe e schemas com <code>kubeconform</code> e implantação automatizada em cluster simulado Kind.</li>
+  </ul>
+
+  <h2>7. Suíte de Testes Abrangentes</h2>
+  <p>
+    Ambos os microsserviços possuem suítes de testes automatizados que cobrem múltiplos aspectos do sistema distribuído:
+  </p>
+  <ul>
+    <li>Testes unitários e de integração de serviços e regras de negócio.</li>
+    <li>Testes de repositórios JPA e persistência relacional.</li>
+    <li>Testes de publicação e consumo de mensagens RabbitMQ nas exchanges Direct, Topic e Fanout, além de roteamento para DLQ.</li>
+    <li>Testes de observabilidade (<code>ActuatorObservabilityIntegrationTest</code>) validando status UP na liveness probe, readiness probe e endpoint de métricas Prometheus.</li>
+  </ul>
+  <p>
+    Todos os testes foram executados com 100% de sucesso.
   </p>
 
-  <h3>2.3 Orquestração Local de Produção (Docker Compose)</h3>
+  <h2>8. Demonstração de Operação no Frontend</h2>
   <p>
-    O manifesto <code>docker-compose.prod.yml</code> orquestra todo o ecossistema simulado:
-    <strong>rabbitmq:3.13-management-alpine</strong>, <strong>openzipkin/zipkin:latest</strong>, <strong>prom/prometheus:latest</strong>, <strong>task-service-prod</strong>, <strong>notification-service-prod</strong> e <strong>frontend-prod</strong>, integrados via rede isolada <code>taskmanager-network</code> com ordenação estrita de dependências (<code>depends_on</code> com <code>condition: service_healthy</code>).
+    O frontend React conta com ferramentas integradas para demonstração e supervisão da operação:
   </p>
+  <ul>
+    <li><strong>Painel de Observabilidade (Modal):</strong> Permite verificar em tempo real o estado de UP/DOWN das probes de liveness e readiness de cada microsserviço, além de links diretos para a interface de telemetria do Zipkin e métricas do Prometheus.</li>
+    <li><strong>Indicadores de Status na Navbar:</strong> Pílulas de monitoramento exibindo a conectividade com o task-service (:8080), notification-service (:8082) e RabbitMQ (:5672).</li>
+  </ul>
 
-  <div class="page-break"></div>
-
-  <h2>3. Orquestração e Escalabilidade com Kubernetes (Item 2 da Rubrica)</h2>
-  <p>
-    A orquestração de produção foi modelada com base nos padrões do Kubernetes, contemplando os manifestos organizados no diretório <code>TP5/k8s/</code>:
-  </p>
-
+  <h2>9. Tabela de Atendimento da Rubrica</h2>
   <table>
     <thead>
       <tr>
-        <th>Manifesto</th>
-        <th>Tipo / Recurso</th>
-        <th>Finalidade Técnica na Produção</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>00-namespace.yaml</code></td>
-        <td>Namespace</td>
-        <td>Cria o namespace isolado <code>taskmanager-prod</code> para controle multi-tenant e segurança.</td>
-      </tr>
-      <tr>
-        <td><code>01-configmap.yaml</code></td>
-        <td>ConfigMap</td>
-        <td>Centraliza configurações não-confidenciais (hosts, portas, endpoints Zipkin e perfis Spring).</td>
-      </tr>
-      <tr>
-        <td><code>02-secrets.yaml</code></td>
-        <td>Secret (Opaque)</td>
-        <td>Armazena credenciais confidenciais codificadas em Base64 (usuário e senha do broker RabbitMQ).</td>
-      </tr>
-      <tr>
-        <td><code>10-rabbitmq.yaml</code></td>
-        <td>Deployment &amp; Service</td>
-        <td>Instancia o message broker RabbitMQ com portas 5672 (AMQP) e 15672 (Painel de Gestão).</td>
-      </tr>
-      <tr>
-        <td><code>11-zipkin.yaml</code></td>
-        <td>Deployment &amp; Service</td>
-        <td>Serviço de coleta e interface para rastreamento distribuído de transações na porta 9411.</td>
-      </tr>
-      <tr>
-        <td><code>12-prometheus.yaml</code></td>
-        <td>ConfigMap &amp; Deployment</td>
-        <td>Servidor Prometheus configurado para realizar scraping periódico dos microsserviços na porta 9090.</td>
-      </tr>
-      <tr>
-        <td><code>20-task-service.yaml</code></td>
-        <td>Deployment, Service &amp; HPA</td>
-        <td>2 réplicas com RollingUpdate, limites de CPU/memória, liveness/readiness probes e autoscaling (2-10 pods).</td>
-      </tr>
-      <tr>
-        <td><code>21-notification-service.yaml</code></td>
-        <td>Deployment, Service &amp; HPA</td>
-        <td>2 réplicas do consumidor assíncrono com probes de integridade e autoscaling horizontal.</td>
-      </tr>
-      <tr>
-        <td><code>30-frontend.yaml</code></td>
-        <td>Deployment &amp; Service</td>
-        <td>2 réplicas do Nginx com aplicação React, service do tipo <code>NodePort</code> na porta 30080.</td>
-      </tr>
-      <tr>
-        <td><code>40-ingress.yaml</code></td>
-        <td>Ingress</td>
-        <td>Regras de roteamento de entrada HTTP unificadas sob o domínio <code>taskmanager.local</code>.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h3>3.1 Estratégia de Atualização RollingUpdate (Zero Downtime)</h3>
-  <p>
-    Para viabilizar entregas contínuas em produção sem indisponibilidade para o usuário, os deployments foram configurados com:
-  </p>
-  <pre>strategy:
-  type: RollingUpdate
-  rollingUpdate:
-    maxSurge: 1        # Permite criar 1 pod excedente durante o deploy
-    maxUnavailable: 0  # Nenhum pod existente é encerrado antes do novo estar Ready</pre>
-
-  <h3>3.2 Escalabilidade Automática com Horizontal Pod Autoscaler (HPA)</h3>
-  <p>
-    Para garantir a elasticidade do sistema perante variações de carga de trabalho (como rajadas de mensagens ou altas taxas de criação de tarefas), foram configurados HPAs para ambos os microsserviços:
-  </p>
-  <pre>apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: task-service-hpa
-  namespace: taskmanager-prod
-spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: task-service
-  minReplicas: 2
-  maxReplicas: 10
-  metrics:
-    - type: Resource
-      resource:
-        name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 70</pre>
-  <p>
-    Quando a utilização média de CPU ultrapassar 70%, o control plane do Kubernetes aloca automaticamente réplicas adicionais até o teto de 10 pods, reduzindo a contagem para o mínimo de 2 pods quando a demanda normalizar.
-  </p>
-
-  <h2>4. Observabilidade, Monitoramento e Tracing (Item 3 da Rubrica)</h2>
-  <p>
-    A operação em produção exige visibilidade em tempo real do estado interno dos serviços:
-  </p>
-
-  <h3>4.1 Liveness e Readiness Probes no Kubernetes</h3>
-  <p>
-    O Spring Boot Actuator foi configurado com <code>management.endpoint.health.probes.enabled=true</code>, expondo os endpoints dedicados para o ciclo de vida dos contêineres:
-  </p>
-  <ul>
-    <li><strong>Liveness Probe (<code>/actuator/health/liveness</code>):</strong> Indica se a aplicação Java e a JVM estão saudáveis. Se falhar, o Kubernetes reinicia o pod automaticamente.</li>
-    <li><strong>Readiness Probe (<code>/actuator/health/readiness</code>):</strong> Indica se a aplicação está pronta para receber requisições de clientes (banco de dados conectado, broker RabbitMQ acessível). Se falhar, o pod é removido temporariamente do balanceamento de carga do Service.</li>
-  </ul>
-
-  <h3>4.2 Agregação de Métricas com Prometheus</h3>
-  <p>
-    Ambos os microsserviços utilizam o Micrometer Prometheus Registry para disponibilizar métricas no padrão aberto via endpoint <code>/actuator/prometheus</code>. O servidor Prometheus central realiza o scraping a cada 5 segundos, coletando:
-  </p>
-  <ul>
-    <li>Latência de requisições HTTP por rota e código de resposta (<code>http_server_requests_seconds</code>);</li>
-    <li>Consumo de memória Heap e Non-Heap da JVM (<code>jvm_memory_used_bytes</code>);</li>
-    <li>Uso de CPU da máquina e do processo (<code>process_cpu_usage</code>);</li>
-    <li>Contadores de mensagens AMQP processadas e taxas de erro (<code>rabbitmq_consumed_total</code>).</li>
-  </ul>
-
-  <h3>4.3 Rastreamento Distribuído (Distributed Tracing com Zipkin)</h3>
-  <p>
-    Foi implementado o rastreamento ponta a ponta com <strong>Micrometer Tracing Bridge Brave</strong> e <strong>Zipkin Reporter</strong>. Cada transação recebe um <code>traceId</code> exclusivo que é propagado entre os microsserviços via cabeçalhos HTTP e metadados AMQP do RabbitMQ:
-  </p>
-  <ul>
-    <li><strong>Trace Context Injection:</strong> O <code>task-service</code> cria o <code>traceId</code> no recebimento da requisição HTTP e o injeta nas propriedades da mensagem RabbitMQ ao publicar o evento.</li>
-    <li><strong>Trace Context Extraction:</strong> O <code>notification-service</code> extrai o mesmo <code>traceId</code> ao consumir a mensagem da fila, permitindo visualizar a jornada completa da transação no console do Zipkin (<code>http://localhost:9411</code>).</li>
-    <li><strong>Correlação em Logs Estruturados:</strong> O padrão de log do Spring foi formatado para incluir o contexto de tracing: <code>%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]</code>.</li>
-  </ul>
-
-  <div class="page-break"></div>
-
-  <h2>5. Gestão de Configuração e Versionamento (Item 4 da Rubrica)</h2>
-  <p>
-    O projeto adota rígidas práticas de gestão de configuração e controle de versão:
-  </p>
-  <ul>
-    <li><strong>Segregação Estrita de Ambientes:</strong> Configuração baseada em perfis Spring:
-      <code>application.properties</code> para desenvolvimento local com banco em memória e RabbitMQ local;
-      <code>application-prod.properties</code> para ambiente de contêineres e Kubernetes, lendo valores dinâmicos de variáveis de ambiente.</li>
-    <li><strong>Injeção por Variáveis de Ambiente:</strong> Valores como <code>RABBITMQ_HOST</code>, <code>RABBITMQ_PORT</code>, <code>RABBITMQ_USERNAME</code> e <code>ZIPKIN_ENDPOINT</code> utilizam fallbacks (ex: <code>${RABBITMQ_HOST:localhost}</code>), permitindo que o mesmo código execute tanto nativamente quanto no cluster K8s.</li>
-    <li><strong>Higiene de Versionamento com Git:</strong> Configuração criteriosa do arquivo <code>.gitignore</code> em todos os módulos, prevenindo o commit acidental de binários (<code>*.jar</code>, <code>build/</code>, <code>dist/</code>), dependências externas (<code>node_modules/</code>, <code>.gradle/</code>) e relatórios transitórios.</li>
-  </ul>
-
-  <h2>6. Automação CI/CD com GitHub Actions (Item 5 da Rubrica)</h2>
-  <p>
-    O fluxo de entrega contínua está implementado no workflow <code>.github/workflows/ci-cd-tp5.yml</code>, estruturado em quatro etapas coordenadas:
-  </p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Job do Pipeline</th>
-        <th>Ambiente / Ferramental</th>
-        <th>Ações e Validações Executadas</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>1. Backend CI</strong></td>
-        <td>Ubuntu Latest, JDK 21 Temurin</td>
-        <td>Execução em matriz paralela para <code>task-service</code> e <code>notification-service</code>: compilação, suíte completa de testes unitários e de integração, empacotamento com <code>./gradlew bootJar</code> e publicação dos relatórios JUnit como artefatos.</td>
-      </tr>
-      <tr>
-        <td><strong>2. Frontend CI</strong></td>
-        <td>Ubuntu Latest, Bun Runtime</td>
-        <td>Instalação determinística com <code>bun install --frozen-lockfile</code>, análise estática de código com <code>oxlint</code> e compilação do bundle de produção com Vite.</td>
-      </tr>
-      <tr>
-        <td><strong>3. Docker Build</strong></td>
-        <td>Docker Buildx</td>
-        <td>Compilação das imagens Docker multi-stage para os três serviços com marcação das tags <code>latest</code> e do hash do commit (<code>${{ github.sha }}</code>).</td>
-      </tr>
-      <tr>
-        <td><strong>4. K8s CD Validation</strong></td>
-        <td>Kubeconform &amp; Kind Cluster</td>
-        <td>Validação rigorosa de esquemas e sintaxe dos manifestos YAML com <code>kubeconform -strict</code>, provisionamento de cluster simulado via Kind e aplicação dos manifestos com verificação dos pods, serviços e HPAs criados.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>7. Suíte de Testes Abrangentes (Item 6 da Rubrica)</h2>
-  <p>
-    A robustez da solução é comprovada por suítes de testes automatizados que cobrem múltiplos aspectos do sistema distribuído:
-  </p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Classe de Teste</th>
-        <th>Serviço</th>
-        <th>Escopo de Validação</th>
+        <th>Item da Rubrica</th>
         <th>Status</th>
+        <th>Evidência Técnica no Projeto</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><code>TaskManagerApplicationTests</code></td>
-        <td>task-service</td>
-        <td>Ciclo completo de criação de tarefas, transições de status e auditoria histórica JPA.</td>
-        <td><span class="badge badge-success">APROVADO</span></td>
+        <td>Utilizar Docker para conteinerizar os microsserviços do sistema</td>
+        <td>Demonstrado</td>
+        <td>Dockerfiles multi-stage (JDK/JRE 21 e Bun/Nginx) e docker-compose.prod.yml com healthchecks.</td>
       </tr>
       <tr>
-        <td><code>RabbitMQEventPublisherTest</code></td>
-        <td>task-service</td>
-        <td>Publicação assíncrona nas exchanges Direct (tarefas criadas/atualizadas), Fanout (alertas) e Topic (métricas).</td>
-        <td><span class="badge badge-success">APROVADO</span></td>
+        <td>Empregar Kubernetes para orquestrar a implantação e escalabilidade dos contêineres</td>
+        <td>Demonstrado</td>
+        <td>10 manifestos K8s no namespace taskmanager-prod com RollingUpdate e HPAs (2 a 10 pods, 70% CPU).</td>
       </tr>
       <tr>
-        <td><code>TaskHistoryRepositoryTest</code></td>
-        <td>task-service</td>
-        <td>Persistência relacional, consultas de histórico ordenadas por timestamp e integridade referencial.</td>
-        <td><span class="badge badge-success">APROVADO</span></td>
+        <td>Configurar ferramentas de agregação de logs e rastreamento de transações</td>
+        <td>Demonstrado</td>
+        <td>Spring Boot Actuator Probes, Prometheus Scraping e OpenZipkin com Micrometer Tracing Brave.</td>
       </tr>
       <tr>
-        <td><code>ActuatorObservabilityIntegrationTest</code></td>
-        <td>task-service</td>
-        <td>Endpoints <code>/actuator/health</code>, <code>/actuator/health/liveness</code>, <code>readiness</code> e scraping <code>/actuator/prometheus</code>.</td>
-        <td><span class="badge badge-success">APROVADO</span></td>
+        <td>Usar Git e GitHub para controlar versões e documentar as mudanças</td>
+        <td>Demonstrado</td>
+        <td>Repositório Git com commits estruturados, .gitignore em cada módulo e separação dev/prod.</td>
       </tr>
       <tr>
-        <td><code>TaskEventListenerTest</code></td>
-        <td>notification-service</td>
-        <td>Consumo de mensagens AMQP das filas de criação, atualização, fanout de broadcast e roteamento para DLQ.</td>
-        <td><span class="badge badge-success">APROVADO</span></td>
+        <td>Configurar e utilizar GitHub Actions para automação de CI/CD</td>
+        <td>Demonstrado</td>
+        <td>Workflow ci-cd-tp5.yml com 4 jobs: Backend CI, Frontend CI, Docker Build e K8s CD Validation.</td>
       </tr>
       <tr>
-        <td><code>NotificationServiceTest</code></td>
-        <td>notification-service</td>
-        <td>Regras de negócio de notificações, leitura individual/em lote, contadores e gerenciamento de DLQ.</td>
-        <td><span class="badge badge-success">APROVADO</span></td>
+        <td>Desenvolver e aplicar testes abrangentes que cobrem diversos aspectos</td>
+        <td>Demonstrado</td>
+        <td>Suítes completas de testes unitários, JPA, RabbitMQ AMQP e Actuator Observability com 100% de sucesso.</td>
       </tr>
       <tr>
-        <td><code>NotificationControllerTest</code></td>
-        <td>notification-service</td>
-        <td>Endpoints REST da API de notificações, respostas HTTP e cabeçalhos de conteúdo.</td>
-        <td><span class="badge badge-success">APROVADO</span></td>
+        <td>Apresentar o código dos microsserviços adaptados para Docker/Kubernetes</td>
+        <td>Demonstrado</td>
+        <td>Probes liveness/readiness, variáveis de ambiente dinâmicas, retries e usuário não-root appuser.</td>
       </tr>
       <tr>
-        <td><code>ActuatorObservabilityIntegrationTest</code></td>
-        <td>notification-service</td>
-        <td>Validação das probes de liveness, readiness e exposição de métricas no serviço consumidor.</td>
-        <td><span class="badge badge-success">APROVADO</span></td>
+        <td>Atualizar a documentação incluindo detalhes de implantação, monitoramento e CI/CD</td>
+        <td>Demonstrado</td>
+        <td>README.md atualizado, documentação técnica de arquitetura e relatório de implantação em PDF.</td>
+      </tr>
+      <tr>
+        <td>Realizar apresentação mostrando a implantação, monitoramento e funcionamento</td>
+        <td>Demonstrado</td>
+        <td>Interface React com Modal de Observabilidade e indicadores visuais de integridade dos serviços.</td>
       </tr>
     </tbody>
   </table>
-
-  <h2>8. Demonstração de Operação no Frontend (Item 9 da Rubrica)</h2>
-  <p>
-    A interface do usuário do <strong>TaskManager PB</strong> foi enriquecida com ferramentas interativas de demonstração operacional:
-  </p>
-  <ul>
-    <li><strong>Indicadores de Status dos Serviços (Navbar):</strong> Monitoramento visual em tempo real do estado de conexão com o <code>task-service (:8080)</code>, <code>notification-service (:8082)</code> e broker <code>RabbitMQ (:5672)</code>.</li>
-    <li><strong>Modal de Observabilidade &amp; Produção:</strong> Painel dedicado que consulta ativamente os endpoints <code>/actuator/health/liveness</code> e <code>/actuator/health/readiness</code> de ambos os microsserviços, exibe o status de scraping do Prometheus e fornece links diretos para a interface de rastreamento do Zipkin e métricas abertas.</li>
-    <li><strong>Simulador de Cenários EDA:</strong> Ferramenta integrada para disparo de cargas sintéticas, testes de broadcast fanout e injeção de falhas com desvio para Dead Letter Queue (DLQ).</li>
-  </ul>
-
-  <h2>9. Guia de Execução e Implantação em Produção</h2>
-  <p>
-    Para executar o sistema em ambiente de produção simulado:
-  </p>
-  <pre># Opção A: Execução via Docker Compose de Produção
-cd TP5
-docker compose -f docker-compose.prod.yml up -d --build
-
-# Opção B: Implantação completa no Cluster Kubernetes
-kubectl apply -f TP5/k8s/00-namespace.yaml
-kubectl apply -f TP5/k8s/01-configmap.yaml
-kubectl apply -f TP5/k8s/02-secrets.yaml
-kubectl apply -f TP5/k8s/10-rabbitmq.yaml
-kubectl apply -f TP5/k8s/11-zipkin.yaml
-kubectl apply -f TP5/k8s/12-prometheus.yaml
-kubectl apply -f TP5/k8s/20-task-service.yaml
-kubectl apply -f TP5/k8s/21-notification-service.yaml
-kubectl apply -f TP5/k8s/30-frontend.yaml
-kubectl apply -f TP5/k8s/40-ingress.yaml
-
-# Verificar a saúde dos pods e auto-escalonamento
-kubectl get all -n taskmanager-prod
-kubectl get hpa -n taskmanager-prod</pre>
 
   <h2>10. Conclusão</h2>
   <p>
-    A entrega do TP5 consolida com excelência todos os objetivos propostos para o Projeto de Bloco de Engenharia de Softwares Escaláveis. A aplicação TaskManager PB transcendeu a fase de protótipo de desenvolvimento e atingiu o nível de maturidade operacional exigido por ambientes corporativos modernos de missão crítica: arquitetura orientada a microsserviços desacoplados por eventos, conteinerização segura em múltiplos estágios, orquestração elástica com Kubernetes, observabilidade tridimensional completa (Logs, Métricas e Traces) e esteira de automação CI/CD orientada a boas práticas de DevOps.
+    A etapa final consolidou com sucesso a maturidade operacional do TaskManager PB. O sistema está preparado para operar em produção, dotado de escalabilidade automática horizontal via Kubernetes, isolamento de contêineres com Docker, monitoramento contínuo com Prometheus e Zipkin, testes automatizados e esteira de CI/CD via GitHub Actions.
   </p>
 
 </body>
