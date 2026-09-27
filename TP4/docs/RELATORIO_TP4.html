@@ -101,7 +101,7 @@
     A quarta etapa do projeto de bloco teve como objetivo refatorar a comunicação distribuída da aplicação TaskManager PB. Anteriormente, a integração entre o serviço de tarefas e o serviço de notificações ocorria por meio de chamadas HTTP síncronas com OpenFeign (TP3). Embora funcional, esse modelo impunha acoplamento temporal e dependência de disponibilidade imediata. A arquitetura foi refatorada para o paradigma orientado a eventos (Event-Driven Architecture - EDA), adotando o RabbitMQ como message broker assíncrono.
   </p>
 
-  <h2>2. Subcompetência 1: Avaliação de Arquitetura Orientada a Eventos (Prós e Contras)</h2>
+  <h2>2. Avaliação de Arquitetura Orientada a Eventos: Prós e Contras</h2>
   <p>
     A transição de uma comunicação fortemente acoplada para um modelo orientado a eventos traz vantagens operacionais e arquiteturais, mas também introduz novos desafios que devem ser balanceados:
   </p>
@@ -123,7 +123,7 @@
     </li>
   </ul>
 
-  <h2>3. Subcompetência 2: Desenvolvimento de Padrões de Mensagens</h2>
+  <h2>3. Padrões de Mensagens Implementados (Direct, Topic, Fanout e DLQ)</h2>
   <p>
     Foram desenvolvidos quatro padrões essenciais de mensageria para atender a múltiplos cenários de negócio:
   </p>
@@ -134,7 +134,7 @@
     <li><strong>Tratamento de Falhas com Fila de Mensagens Mortas (Dead Letter Queue - DLQ):</strong> Mensagens que falham após 3 tentativas com backoff exponencial ou que são explicitamente rejeitadas são desviadas para a fila <code>task.dead-letter.queue</code>, impedindo perdas de dados e viabilizando reprocessamento posterior.</li>
   </ul>
 
-  <h2>4. Subcompetência 3: Documentação Arquitetural e Fluxo de Mensagens</h2>
+  <h2>4. Topologia e Fluxo de Mensagens</h2>
   <p>
     A topologia da solução é composta pelo produtor (<code>task-service :8080</code>), pelo broker (<code>RabbitMQ 3.13</code>) e pelo consumidor (<code>notification-service :8082</code>).
   </p>
@@ -159,7 +159,7 @@
         v
 [Central de Notificações / React UI]</pre>
 
-  <h2>5. Subcompetência 4: Abstrações Spring Boot e Configuração do RabbitMQ</h2>
+  <h2>5. Abstrações Spring Boot e Configuração do RabbitMQ</h2>
   <p>
     A integração utilizou a biblioteca <code>spring-boot-starter-amqp</code>:
   </p>
@@ -169,7 +169,7 @@
     <li><strong>Execução Contida via Docker:</strong> Instanciação do RabbitMQ 3.13 através de <code>docker-compose.yml</code> com portas 5672 (AMQP) e 15672 (Management Console).</li>
   </ul>
 
-  <h2>6. Subcompetência 5: Testes Automatizados da Arquitetura Orientada a Eventos</h2>
+  <h2>6. Testes Automatizados da Arquitetura Orientada a Eventos</h2>
   <p>
     Foram aplicados testes automatizados utilizando <code>spring-rabbit-test</code> e MockMvc:
   </p>
@@ -181,43 +181,9 @@
     Todos os testes da camada de mensageria foram aprovados com 100% de sucesso.
   </p>
 
-  <h2>7. Matriz de Atendimento das Subcompetências da Rubrica</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Subcompetência da Rubrica</th>
-        <th>Status</th>
-        <th>Evidência Técnica no Projeto</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Implementar padrões de arquitetura orientada a eventos usando RabbitMQ e abstrações do Spring Boot</td>
-        <td>Demonstrado</td>
-        <td>Configuração completa de RabbitTemplate, @RabbitListener, Jackson2JsonMessageConverter e políticas de retry.</td>
-      </tr>
-      <tr>
-        <td>Implementar em uma arquitetura orientada a eventos</td>
-        <td>Demonstrado</td>
-        <td>Desacoplamento assíncrono entre task-service e notification-service mediado por mensageria AMQP.</td>
-      </tr>
-      <tr>
-        <td>Apresentar os prós e contras da arquitetura orientada a eventos</td>
-        <td>Demonstrado</td>
-        <td>Análise técnica detalhada na documentação cobrindo desacoplamento, resiliência, consistência eventual e DLQ.</td>
-      </tr>
-      <tr>
-        <td>Documentar a arquitetura da solução, incluindo diagramas de componentes e sequência</td>
-        <td>Demonstrado</td>
-        <td>Topologia descritiva, fluxo de eventos, diagramas ASCII e documentação completa dos fluxos de dados.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>8. Conclusão</h2>
+  <h2>7. Conclusão</h2>
   <p>
     A refatoração para a arquitetura orientada a eventos representou um salto qualitativo significativo para a escalabilidade e confiabilidade do sistema. O isolamento das operações de notificação por meio de filas assíncronas garantiu que o serviço central de tarefas opere sem bloqueios e imune a eventuais indisponibilidades de componentes auxiliares.
   </p>
-
 </body>
 </html>

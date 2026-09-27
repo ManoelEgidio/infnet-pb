@@ -101,7 +101,7 @@
     Esta etapa representa a fase de transição da aplicação TaskManager PB para a operação em ambiente de produção simulado. O foco central consistiu em conferir estabilidade, escalabilidade, segurança e manutenibilidade ao ecossistema distribuído através de conteinerização com Docker, orquestração elástica com Kubernetes, monitoramento tridimensional com Spring Boot Actuator, Prometheus e Zipkin, e automação do ciclo de vida com GitHub Actions.
   </p>
 
-  <h2>2. Subcompetência 1: Implantação com Docker (Conteinerização Multi-Stage)</h2>
+  <h2>2. Conteinerização com Docker (Multi-Stage Builds)</h2>
   <p>
     Todos os componentes do sistema foram conteinerizados adotando a estratégia de compilação multiestágio (Multi-Stage Builds), que separa o ambiente pesado de compilação da imagem final mínima executada em produção:
   </p>
@@ -111,7 +111,7 @@
     <li><strong>Orquestração com Docker Compose:</strong> O arquivo <code>docker-compose.prod.yml</code> orquestra todos os serviços (task-service, notification-service, frontend, rabbitmq, zipkin e prometheus) em rede isolada <code>taskmanager-network</code> com ordenação de inicialização baseada na integridade dos serviços.</li>
   </ul>
 
-  <h2>3. Subcompetência 2: Orquestração e Escalabilidade com Kubernetes</h2>
+  <h2>3. Orquestração e Escalabilidade com Kubernetes</h2>
   <p>
     Para gerenciar o ciclo de vida dos contêineres em produção, foi desenvolvida a especificação declarativa completa no diretório <code>TP5/k8s/</code>:
   </p>
@@ -124,7 +124,7 @@
     <li><code>30-frontend.yaml</code> e <code>40-ingress.yaml</code>: Deployment da interface com Service NodePort (porta 30080) e Ingress unificado para roteamento de tráfego.</li>
   </ul>
 
-  <h2>4. Subcompetência 3: Monitoramento de Microsserviços (Observabilidade, Logs e Tracing)</h2>
+  <h2>4. Monitoramento de Microsserviços (Observabilidade, Logs e Tracing)</h2>
   <p>
     A solução contempla os três pilares da observabilidade para monitoramento contínuo:
   </p>
@@ -135,7 +135,7 @@
     <li><strong>Logs Estruturados com Correlação:</strong> O formato de log do Spring Boot inclui o identificador do serviço, o traceId e o spanId: <code>%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]</code>.</li>
   </ul>
 
-  <h2>5. Subcompetência 4: Controle de Versão e Gestão de Configuração</h2>
+  <h2>5. Gestão de Configuração e Versionamento Git</h2>
   <p>
     A separação entre ambientes de desenvolvimento e produção é garantida por perfis Spring:
   </p>
@@ -145,7 +145,7 @@
     <li><strong>Controle de Versão:</strong> O repositório Git mantém histórico claro de mudanças, com arquivos <code>.gitignore</code> configurados para impedir o commit de artefatos de build, binários e relatórios intermediários.</li>
   </ul>
 
-  <h2>6. Subcompetência 5: Automação CI/CD com GitHub Actions</h2>
+  <h2>6. Automação CI/CD com GitHub Actions</h2>
   <p>
     A automação do fluxo de integração e entrega contínua foi implementada no workflow <code>.github/workflows/ci-cd-tp5.yml</code>, estruturado em quatro etapas:
   </p>
@@ -156,7 +156,7 @@
     <li><strong>K8s Validation & CD Simulation:</strong> Validação de sintaxe e schemas com <code>kubeconform</code> e implantação automatizada em cluster simulado Kind.</li>
   </ul>
 
-  <h2>7. Subcompetência 6: Suíte de Testes Abrangentes</h2>
+  <h2>7. Suíte de Testes Abrangentes</h2>
   <p>
     Ambos os microsserviços possuem suítes de testes automatizados que cobrem múltiplos aspectos do sistema distribuído:
   </p>
@@ -170,7 +170,7 @@
     Todos os testes foram executados com 100% de sucesso.
   </p>
 
-  <h2>8. Subcompetência 7: Apresentação da Operação no Frontend</h2>
+  <h2>8. Demonstração de Operação no Frontend</h2>
   <p>
     O frontend React conta com ferramentas integradas para demonstração e supervisão da operação:
   </p>
@@ -179,68 +179,9 @@
     <li><strong>Indicadores de Status na Navbar:</strong> Pílulas de monitoramento exibindo a conectividade com o task-service (:8080), notification-service (:8082) e RabbitMQ (:5672).</li>
   </ul>
 
-  <h2>9. Matriz de Atendimento das Subcompetências da Rubrica</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Subcompetência da Rubrica</th>
-        <th>Status</th>
-        <th>Evidência Técnica no Projeto</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Utilizar Docker para conteinerizar os microsserviços do sistema</td>
-        <td>Demonstrado</td>
-        <td>Dockerfiles multi-stage (JDK/JRE 21 e Bun/Nginx) e docker-compose.prod.yml com healthchecks.</td>
-      </tr>
-      <tr>
-        <td>Empregar Kubernetes para orquestrar a implantação e escalabilidade dos contêineres</td>
-        <td>Demonstrado</td>
-        <td>10 manifestos K8s no namespace taskmanager-prod com RollingUpdate e HPAs (2 a 10 pods, 70% CPU).</td>
-      </tr>
-      <tr>
-        <td>Configurar ferramentas de agregação de logs e rastreamento de transações</td>
-        <td>Demonstrado</td>
-        <td>Spring Boot Actuator Probes, Prometheus Scraping e OpenZipkin com Micrometer Tracing Brave.</td>
-      </tr>
-      <tr>
-        <td>Usar Git e GitHub para controlar versões e documentar as mudanças</td>
-        <td>Demonstrado</td>
-        <td>Repositório Git com commits estruturados, .gitignore em cada módulo e separação dev/prod.</td>
-      </tr>
-      <tr>
-        <td>Configurar e utilizar GitHub Actions para automação de CI/CD</td>
-        <td>Demonstrado</td>
-        <td>Workflow ci-cd-tp5.yml com 4 jobs: Backend CI, Frontend CI, Docker Build e K8s CD Validation.</td>
-      </tr>
-      <tr>
-        <td>Desenvolver e aplicar testes abrangentes que cobrem diversos aspectos</td>
-        <td>Demonstrado</td>
-        <td>Suítes completas de testes unitários, JPA, RabbitMQ AMQP e Actuator Observability com 100% de sucesso.</td>
-      </tr>
-      <tr>
-        <td>Apresentar o código dos microsserviços adaptados para Docker/Kubernetes</td>
-        <td>Demonstrado</td>
-        <td>Probes liveness/readiness, variáveis de ambiente dinâmicas, retries e usuário não-root appuser.</td>
-      </tr>
-      <tr>
-        <td>Atualizar a documentação incluindo detalhes de implantação, monitoramento e CI/CD</td>
-        <td>Demonstrado</td>
-        <td>README.md atualizado, documentação técnica de arquitetura e relatório de implantação em PDF.</td>
-      </tr>
-      <tr>
-        <td>Realizar apresentação mostrando a implantação, monitoramento e funcionamento</td>
-        <td>Demonstrado</td>
-        <td>Interface React com Modal de Observabilidade e indicadores visuais de integridade dos serviços.</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2>10. Conclusão</h2>
+  <h2>9. Conclusão</h2>
   <p>
     A etapa final consolidou com sucesso a maturidade operacional do TaskManager PB. O sistema está preparado para operar em produção, dotado de escalabilidade automática horizontal via Kubernetes, isolamento de contêineres com Docker, monitoramento contínuo com Prometheus e Zipkin, testes automatizados e esteira de CI/CD via GitHub Actions.
   </p>
-
 </body>
 </html>
